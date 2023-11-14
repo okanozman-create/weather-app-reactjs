@@ -3,6 +3,7 @@ import IMAGES from "./images";
 import toDateFunction from "./toDateFunction";
 import config from "./config.json";
 
+
 const apiKey = config.apiKey;
 
 export default function App() {
@@ -34,7 +35,7 @@ export default function App() {
       if (!res.ok) throw new Error("Something went wrong...");
 
       const data = await res.json();
-      console.log(data);
+    
 
       setError("");
       setWeatherData(data);
