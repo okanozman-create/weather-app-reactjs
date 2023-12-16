@@ -3,13 +3,7 @@ import IMAGES from "./images";
 import toDateFunction from "./toDateFunction";
 import config from "./config.json";
 
-
-
-
 const apiKey = config.apiKey;
-
-
-
 
 
 
@@ -47,7 +41,7 @@ export default function App() {
       setError("");
       setWeatherData(data);
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       setError(error.message);
     } finally {
       setIsLoading(false);
