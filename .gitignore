@@ -1,5 +1,4 @@
-
-src/config.json
-
 *.log
 node_modules
+
+"/src"
