@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import IMAGES from "./images";
 import toDateFunction from "./toDateFunction";
 import config from "./config.json";
@@ -48,10 +48,16 @@ export default function App() {
     }
   }
 
+
+
   function handleSearchClick() {
     fetchData();
     setCity("");
   }
+
+
+
+
   return (
     <div className="App">
       <div className="container">
@@ -59,6 +65,7 @@ export default function App() {
           city={city}
           setCity={setCity}
           onSearchClick={handleSearchClick}
+          fetchData={fetchData}
         />
         {isLoading && <Loader />}
 
@@ -82,7 +89,25 @@ function Loader() {
   return <p className="loader">Loading...</p>;
 }
 
-function Search({ city, setCity, onSearchClick }) {
+function Search({ city, setCity, onSearchClick,fetchData }) {
+
+  useEffect(() => {
+    const handleKeyPress = async function (e) {
+      if (e.key === 'Enter') {
+        await fetchData(); // Wait for fetchData to complete
+        setCity('');
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyPress);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [fetchData, setCity]);
+
+
+
   return (
     <div className="search-box">
       <input
