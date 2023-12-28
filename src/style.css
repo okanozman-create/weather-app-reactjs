@@ -17,7 +17,7 @@ body {
 
 .container {
   background-color: #495057;
-  max-width: 40%;
+  /* max-width: 40%; */
   height: 80vh;
   margin: 8rem auto;
   padding: 3.2rem 3.2rem;
@@ -141,14 +141,11 @@ input::placeholder {
   color: red;
 }
 
-@media (max-width: 28em) {
-  .container {
-    max-width: 100%;
-  }
-}
 
-@media (max-width: 64em) {
+
+ @media (min-width: 65em) {
   .container {
-    max-width: 100%;
+    max-width: 40%;
   }
-}
+}  
+

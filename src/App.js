@@ -56,10 +56,9 @@ export default function App() {
   }
 
 
-
-
-  return (
+ return (
     <div className="App">
+
       <div className="container">
         <Search
           city={city}
@@ -76,8 +75,9 @@ export default function App() {
           </>
         )}
         {error && <ErrorMessage message={error} />}
+        </div>
       </div>
-    </div>
+  
   );
 }
 
