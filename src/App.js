@@ -3,11 +3,27 @@ import IMAGES from "./images";
 import toDateFunction from "./toDateFunction";
 import config from "./config.json";
 
+import "@aws-amplify/ui-react/styles.css";
+import {
+  withAuthenticator,
+  Button,
+  Heading,
+  Image,
+  View,
+  Card,
+} from "@aws-amplify/ui-react";
+
+
+
+
+
+
+
 const apiKey = config.apiKey;
 
 
 
-export default function App() {
+ function App({signOut}) {
   const [city, setCity] = useState("");
   const [weatherData, setWeatherData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -59,6 +75,17 @@ export default function App() {
  return (
     <div className="App">
 
+<View className="App">
+      <Card>
+        {/* <Image src={logo} className="App-logo" alt="logo" /> */}
+        {/* <Heading level={1}>We now have Auth!</Heading> */}
+      </Card>
+      <Button onClick={signOut}>Sign Out</Button>
+    </View>
+
+
+
+
       <div className="container">
         <Search
           city={city}
@@ -80,6 +107,11 @@ export default function App() {
   
   );
 }
+
+export default withAuthenticator(App)
+
+
+
 
 function ErrorMessage({ message }) {
   return <p className="error">{message}</p>;

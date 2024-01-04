@@ -45,7 +45,7 @@
         "IdentityPoolName": "weatherappreactjs8f8dca4f_identitypool_8f8dca4f__staging",
         "UserPoolName": "weatherappreactjs8f8dca4f_userpool_8f8dca4f"
       },
-      "lastPushTimeStamp": "2024-01-04T17:28:46.885Z",
+      "lastPushTimeStamp": "2024-01-04T18:41:20.738Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify2e7a5eb004df4-staging-102107-deployment/amplify-cfn-templates/auth/weatherappreactjs8f8dca4f-cloudformation-template.json",
         "logicalId": "authweatherappreactjs8f8dca4f"
