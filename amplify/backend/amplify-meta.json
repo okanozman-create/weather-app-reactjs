@@ -1,0 +1,56 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplify2e7a5eb004df4-staging-102107-authRole",
+      "UnauthRoleArn": "arn:aws:iam::511653339525:role/amplify-amplify2e7a5eb004df4-staging-102107-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::511653339525:role/amplify-amplify2e7a5eb004df4-staging-102107-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-amplify2e7a5eb004df4-staging-102107-deployment",
+      "UnauthRoleName": "amplify-amplify2e7a5eb004df4-staging-102107-unauthRole",
+      "StackName": "amplify-amplify2e7a5eb004df4-staging-102107",
+      "StackId": "arn:aws:cloudformation:eu-west-1:511653339525:stack/amplify-amplify2e7a5eb004df4-staging-102107/cf0c0c20-aa21-11ee-ad84-0a1ff15d5763",
+      "AmplifyAppId": "d35m01a902r94k"
+    }
+  },
+  "auth": {
+    "weatherappreactjs8f8dca4f": {
+      "customAuth": false,
+      "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "output": {
+        "UserPoolId": "eu-west-1_Dh3gXBjxJ",
+        "AppClientIDWeb": "5ra3lanrsbe6lq0uq3mi861esc",
+        "AppClientID": "r97hpbsc5sutr08roi3luft46",
+        "IdentityPoolId": "eu-west-1:ee48896e-a376-448b-a1ad-c83f0ad53eae",
+        "UserPoolArn": "arn:aws:cognito-idp:eu-west-1:511653339525:userpool/eu-west-1_Dh3gXBjxJ",
+        "IdentityPoolName": "weatherappreactjs8f8dca4f_identitypool_8f8dca4f__staging",
+        "UserPoolName": "weatherappreactjs8f8dca4f_userpool_8f8dca4f"
+      },
+      "lastPushTimeStamp": "2024-01-04T17:28:46.885Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify2e7a5eb004df4-staging-102107-deployment/amplify-cfn-templates/auth/weatherappreactjs8f8dca4f-cloudformation-template.json",
+        "logicalId": "authweatherappreactjs8f8dca4f"
+      },
+      "lastPushDirHash": "gSkQfK7nNwr1jroydjvvoaKfpPQ="
+    }
+  }
+}
