@@ -1,0 +1,7 @@
+{
+    "AppSyncApiName": "weatherappreactjs",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "S3DeploymentBucket": "amplify-amplify2e7a5eb004df4-staging-102107-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/66e4e21c2d47bcba88b6913373ce5601d4de2a0c"
+}
