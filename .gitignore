@@ -1,9 +1,12 @@
+# Ignore these files and directories
+
 *.log
-node_modules
+node_modules/
 
- src/config.json
+# Include README.md even though it matches a previous pattern
+src/config.json
+README.md
 
-!README.md
 
 #amplify-do-not-edit-begin
 # amplify/\#current-cloud-backend
