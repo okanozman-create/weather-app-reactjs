@@ -12,9 +12,6 @@
       "AmplifyAppId": "d35m01a902r94k"
     },
     "categories": {
-      "auth": {
-        "weatherappreactjs8f8dca4f": {}
-      },
       "api": {
         "weatherappreactjs": {}
       },
