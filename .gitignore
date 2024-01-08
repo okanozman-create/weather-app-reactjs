@@ -4,7 +4,7 @@
  node_modules/
 
 # Include README.md egitven though it matches a previous pattern
-src/config.json
+# src/config.json
 README.md
 
 
