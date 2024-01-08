@@ -1,9 +1,9 @@
 # Ignore these files and directories
 
 *.log
-node_modules/
+ node_modules/
 
-# Include README.md even though it matches a previous pattern
+# Include README.md egitven though it matches a previous pattern
 src/config.json
 README.md
 
@@ -29,3 +29,4 @@ README.md
 # .secret-*
 # **.sample
 #amplify-do-not-edit-end
+node_modules
