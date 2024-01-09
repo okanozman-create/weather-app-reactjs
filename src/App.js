@@ -44,7 +44,7 @@ import {
   // TextField,
   // View,
   // WithAuthenticatorProps,
-  withAuthenticator,
+  // withAuthenticator,
 } from "@aws-amplify/ui-react";
 import "./style.css";
 
@@ -83,7 +83,7 @@ Amplify.configure(config);
 const apiKey = process.env.REACT_APP_API_KEY
 // const apiKey = configs.apiKey;
 
-const App = ({signOut}) =>{
+const App = () =>{
 
 //  function App({signOut}) {
   const [city, setCity] = useState("");
@@ -294,7 +294,7 @@ const App = ({signOut}) =>{
   );
 }
 
-export default withAuthenticator(App)
+export default App
 
 
 
