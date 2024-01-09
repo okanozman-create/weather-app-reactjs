@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import IMAGES from "./images";
 import toDateFunction from "./toDateFunction";
-import configs from "./config.json";
+// import configs from "./config.json";
 
 
 
@@ -80,8 +80,8 @@ Amplify.configure(config);
 // const storage = Amplify.Storage;
 
 // const client = generateClient();
-
-const apiKey = configs.apiKey;
+const apiKey = process.env.REACT_APP_API_KEY
+// const apiKey = configs.apiKey;
 
 const App = ({signOut}) =>{
 
