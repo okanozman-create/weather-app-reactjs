@@ -36,7 +36,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify2e7a5eb004df4-staging-102107-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apiweatherappreactjs"
       },
-      "lastPushTimeStamp": "2024-01-10T21:39:45.492Z",
+      "lastPushTimeStamp": "2024-01-10T22:35:37.231Z",
       "lastPushDirHash": "6JuLV55KjAQG9aZPHx+hudHusew="
     }
   },
@@ -45,7 +45,7 @@
       "service": "S3",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
-      "lastPushTimeStamp": "2024-01-10T21:39:48.128Z",
+      "lastPushTimeStamp": "2024-01-10T22:35:39.839Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify2e7a5eb004df4-staging-102107-deployment/amplify-cfn-templates/storage/cloudformation-template.json",
         "logicalId": "storagestorage4weatherapp"
