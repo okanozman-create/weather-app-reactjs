@@ -6,7 +6,6 @@ import toDateFunction from "./toDateFunction";
 
 
 
-
 // import "./App.css";
 // import { Amplify } from 'aws-amplify';
 // import { generateClient } from 'aws-amplify/api';
@@ -80,8 +79,11 @@ Amplify.configure(config);
 // const storage = Amplify.Storage;
 
 // const client = generateClient();
-const apiKey = process.env.REACT_APP_API_KEY
+console.log('REACT_APP_API_KEY:', process.env.REACT_APP_ENV_API_KEY);
+console.log('REACT_APP_DEBUG:', process.env.REACT_APP_DEBUG);
 // const apiKey = configs.apiKey;
+  
+const apiKey = process.env.REACT_APP_ENV_API_KEY 
 
 const App = () =>{
 
