@@ -1,0 +1,160 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Rubik", sans-serif, "Agbalumo", "Griffy";
+  font-weight: 400;
+  line-height: 1;
+  color: #adb5bd;
+}
+
+.container {
+  background-color: #495057;
+  max-width: 100%; 
+  height: 80vh;
+  margin: 4rem auto;
+  padding: 3.2rem 3.2rem;
+  border-radius: 2rem;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 3rem;
+  background-color: #edeef0;
+  padding-left: 2rem;
+  margin-bottom: 4.8rem;
+}
+
+.input-field {
+  flex: 1;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 10px;
+}
+
+.search-logo {
+  padding: 1.6rem 5rem;
+  background-color: #94d82d;
+  cursor: pointer;
+  border-radius: 4rem;
+}
+.search-logo:hover {
+  background-color: #66a80f;
+}
+.weather-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.4rem;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 3.6rem;
+  letter-spacing: 4px;
+}
+
+h3 {
+  font-family: "Agbalumo";
+  font-weight: 500;
+  color: #94d82d;
+  font-size: 2.4rem;
+}
+
+.weather-details span {
+  font-weight: 700;
+  font-size: 5.2rem;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 3.2rem;
+}
+
+.humidity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wind {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+p {
+  font-weight: 400;
+  font-size: 2.4rem;
+}
+
+.main-img img {
+  max-width: 100%;
+  height: auto; 
+  width: 10rem; 
+  max-height: 10rem; 
+}
+
+input::placeholder {
+  font-weight: bold;
+  opacity: 0.5;
+  color: red;
+  font-family: "Griffy";
+}
+
+.new-flex {
+  display: flex;
+  align-items: center;
+  gap: 3.2rem;
+}
+
+.new-flex-2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.loader {
+  font-weight: 700;
+  font-size: 3.6rem;
+  letter-spacing: 4px;
+  color: red;
+  text-align: center;
+}
+
+.error {
+  text-align: center;
+  color: red;
+}
+
+
+
+ @media (min-width: 65em) {
+  .container {
+    max-width: 40%;
+  }
+}  
+
+
+@media (max-width: 25em) {
+  .humidity p{
+ font-size: 1.8rem;
+  }
+  .wind p{
+    font-size: 1.8rem;
+  }
+}  

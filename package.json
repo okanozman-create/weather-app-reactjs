@@ -1,0 +1,51 @@
+{
+  "name": "weather-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@aws-amplify/ui-react": "^6.1.0",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "aws-amplify": "^6.0.10",
+    "domexception": "^4.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "stable": "^0.1.8",
+    "svgo": "^3.2.0",
+    "w3c-hr-time": "^1.0.2",
+    "web-vitals": "^2.1.4"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/plugin-transform-private-methods": "^7.21.11",
+    "react-scripts": "^5.0.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "typescript": "^4.9.5"
+  }
+}
