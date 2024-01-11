@@ -3,11 +3,6 @@
 *.log
  node_modules/
 
-# Include README.md egitven though it matches a previous pattern
-# src/config.json
-README.md
-
- src/amplifyconfiguration.json
 #amplify-do-not-edit-begin 
  amplify/\#current-cloud-backend
  amplify/.config/local-*
@@ -18,10 +13,9 @@ README.md
  amplify/backend/.temp
  build/
  dist/
-
  aws-exports.js
  awsconfiguration.json
-
+ amplifyconfiguration.json
  amplifyconfiguration.dart
  amplify-build-config.json
  amplify-gradle-config.json
@@ -29,6 +23,15 @@ README.md
  .secret-*
  **.sample
 #amplify-do-not-edit-end
+
+
+
+# Include README.md egitven though it matches a previous pattern
+# src/config.json
+README.md
+
+
+
 
 
 
