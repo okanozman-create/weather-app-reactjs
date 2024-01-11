@@ -1,10 +1,12 @@
-type Note {
+type Todo {
   id: ID!
   name: String!
   description: String
-  image: String
   createdAt: AWSDateTime!
   updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
 }
 
 input ModelStringInput {
@@ -157,70 +159,73 @@ enum ModelSortDirection {
   DESC
 }
 
-type ModelNoteConnection {
-  items: [Note]!
+type ModelTodoConnection {
+  items: [Todo]!
   nextToken: String
+  startedAt: AWSTimestamp
 }
 
-input ModelNoteFilterInput {
+input ModelTodoFilterInput {
   id: ModelIDInput
   name: ModelStringInput
   description: ModelStringInput
-  image: ModelStringInput
-  and: [ModelNoteFilterInput]
-  or: [ModelNoteFilterInput]
-  not: ModelNoteFilterInput
+  and: [ModelTodoFilterInput]
+  or: [ModelTodoFilterInput]
+  not: ModelTodoFilterInput
+  _deleted: ModelBooleanInput
 }
 
 type Query {
-  getNote(id: ID!): Note
-  listNotes(filter: ModelNoteFilterInput, limit: Int, nextToken: String): ModelNoteConnection
+  getTodo(id: ID!): Todo
+  listTodos(filter: ModelTodoFilterInput, limit: Int, nextToken: String): ModelTodoConnection
+  syncTodos(filter: ModelTodoFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelTodoConnection
 }
 
-input ModelNoteConditionInput {
+input ModelTodoConditionInput {
   name: ModelStringInput
   description: ModelStringInput
-  image: ModelStringInput
-  and: [ModelNoteConditionInput]
-  or: [ModelNoteConditionInput]
-  not: ModelNoteConditionInput
+  and: [ModelTodoConditionInput]
+  or: [ModelTodoConditionInput]
+  not: ModelTodoConditionInput
+  _deleted: ModelBooleanInput
 }
 
-input CreateNoteInput {
+input CreateTodoInput {
   id: ID
   name: String!
   description: String
-  image: String
+  _version: Int
 }
 
-input UpdateNoteInput {
+input UpdateTodoInput {
   id: ID!
   name: String
   description: String
-  image: String
+  _version: Int
 }
 
-input DeleteNoteInput {
+input DeleteTodoInput {
   id: ID!
+  _version: Int
 }
 
 type Mutation {
-  createNote(input: CreateNoteInput!, condition: ModelNoteConditionInput): Note
-  updateNote(input: UpdateNoteInput!, condition: ModelNoteConditionInput): Note
-  deleteNote(input: DeleteNoteInput!, condition: ModelNoteConditionInput): Note
+  createTodo(input: CreateTodoInput!, condition: ModelTodoConditionInput): Todo
+  updateTodo(input: UpdateTodoInput!, condition: ModelTodoConditionInput): Todo
+  deleteTodo(input: DeleteTodoInput!, condition: ModelTodoConditionInput): Todo
 }
 
-input ModelSubscriptionNoteFilterInput {
+input ModelSubscriptionTodoFilterInput {
   id: ModelSubscriptionIDInput
   name: ModelSubscriptionStringInput
   description: ModelSubscriptionStringInput
-  image: ModelSubscriptionStringInput
-  and: [ModelSubscriptionNoteFilterInput]
-  or: [ModelSubscriptionNoteFilterInput]
+  and: [ModelSubscriptionTodoFilterInput]
+  or: [ModelSubscriptionTodoFilterInput]
+  _deleted: ModelBooleanInput
 }
 
 type Subscription {
-  onCreateNote(filter: ModelSubscriptionNoteFilterInput): Note @aws_subscribe(mutations: ["createNote"])
-  onUpdateNote(filter: ModelSubscriptionNoteFilterInput): Note @aws_subscribe(mutations: ["updateNote"])
-  onDeleteNote(filter: ModelSubscriptionNoteFilterInput): Note @aws_subscribe(mutations: ["deleteNote"])
+  onCreateTodo(filter: ModelSubscriptionTodoFilterInput): Todo @aws_subscribe(mutations: ["createTodo"])
+  onUpdateTodo(filter: ModelSubscriptionTodoFilterInput): Todo @aws_subscribe(mutations: ["updateTodo"])
+  onDeleteTodo(filter: ModelSubscriptionTodoFilterInput): Todo @aws_subscribe(mutations: ["deleteTodo"])
 }

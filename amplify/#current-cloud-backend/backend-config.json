@@ -7,7 +7,9 @@
           "additionalAuthenticationProviders": [],
           "defaultAuthentication": {
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 7
+              "apiKeyExpirationDate": "2024-02-10T11:32:19.383Z",
+              "apiKeyExpirationDays": 30,
+              "description": "gecici"
             },
             "authenticationType": "API_KEY"
           }
@@ -18,6 +20,7 @@
     }
   },
   "auth": {},
+  "function": {},
   "storage": {
     "storage4weatherapp": {
       "dependsOn": [],
