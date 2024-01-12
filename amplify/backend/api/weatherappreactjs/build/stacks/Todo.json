@@ -51,6 +51,12 @@
     },
     "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref": {
       "Type": "String"
+    },
+    "referencetotransformerrootstackauthRoleNameFB872D50Ref": {
+      "Type": "String"
+    },
+    "referencetotransformerrootstackunauthRoleName49F3C1FERef": {
+      "Type": "String"
     }
   },
   "Conditions": {
@@ -420,6 +426,36 @@
         "TodoIAMRole2DA8E66E"
       ]
     },
+    "QuerygetTodoauth0FunctionQuerygetTodoauth0FunctionAppSyncFunction846D8436": {
+      "Type": "AWS::AppSync::FunctionConfiguration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+        },
+        "DataSourceName": {
+          "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
+        },
+        "Name": "QuerygetTodoauth0Function",
+        "FunctionVersion": "2018-05-29",
+        "RequestMappingTemplateS3Location": {
+          "Fn::Join": [
+            "",
+            [
+              "s3://",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
+              },
+              "/",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
+              },
+              "/resolvers/Query.getTodo.auth.1.req.vtl"
+            ]
+          ]
+        },
+        "ResponseMappingTemplate": "$util.toJson({})"
+      }
+    },
     "QuerygetTodopostAuth0FunctionQuerygetTodopostAuth0FunctionAppSyncFunction6BE14593": {
       "Type": "AWS::AppSync::FunctionConfiguration",
       "Properties": {
@@ -518,6 +554,12 @@
           "Functions": [
             {
               "Fn::GetAtt": [
+                "QuerygetTodoauth0FunctionQuerygetTodoauth0FunctionAppSyncFunction846D8436",
+                "FunctionId"
+              ]
+            },
+            {
+              "Fn::GetAtt": [
                 "QuerygetTodopostAuth0FunctionQuerygetTodopostAuth0FunctionAppSyncFunction6BE14593",
                 "FunctionId"
               ]
@@ -542,7 +584,23 @@
               {
                 "Ref": "TodoTable"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"deltaSyncTableTtl\", 30))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"eu-west-1_GtAInACMG_Full-access/CognitoIdentityCredentials\",\"eu-west-1_GtAInACMG_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"deltaSyncTableTtl\", 30))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackauthRoleNameFB872D50Ref"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackunauthRoleName49F3C1FERef"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"eu-west-1_GtAInACMG_Full-access/CognitoIdentityCredentials\",\"eu-west-1_GtAInACMG_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
             ]
           ]
         },
@@ -617,6 +675,12 @@
           "Functions": [
             {
               "Fn::GetAtt": [
+                "QuerygetTodoauth0FunctionQuerygetTodoauth0FunctionAppSyncFunction846D8436",
+                "FunctionId"
+              ]
+            },
+            {
+              "Fn::GetAtt": [
                 "QuerygetTodopostAuth0FunctionQuerygetTodopostAuth0FunctionAppSyncFunction6BE14593",
                 "FunctionId"
               ]
@@ -641,7 +705,23 @@
               {
                 "Ref": "TodoTable"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"deltaSyncTableTtl\", 30))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"eu-west-1_GtAInACMG_Full-access/CognitoIdentityCredentials\",\"eu-west-1_GtAInACMG_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"deltaSyncTableTtl\", 30))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackauthRoleNameFB872D50Ref"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackunauthRoleName49F3C1FERef"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"eu-west-1_GtAInACMG_Full-access/CognitoIdentityCredentials\",\"eu-west-1_GtAInACMG_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
             ]
           ]
         },
@@ -716,6 +796,12 @@
           "Functions": [
             {
               "Fn::GetAtt": [
+                "QuerygetTodoauth0FunctionQuerygetTodoauth0FunctionAppSyncFunction846D8436",
+                "FunctionId"
+              ]
+            },
+            {
+              "Fn::GetAtt": [
                 "QuerygetTodopostAuth0FunctionQuerygetTodopostAuth0FunctionAppSyncFunction6BE14593",
                 "FunctionId"
               ]
@@ -740,7 +826,23 @@
               {
                 "Ref": "TodoTable"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"deltaSyncTableTtl\", 30))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"eu-west-1_GtAInACMG_Full-access/CognitoIdentityCredentials\",\"eu-west-1_GtAInACMG_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"deltaSyncTableTtl\", 30))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackauthRoleNameFB872D50Ref"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackunauthRoleName49F3C1FERef"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"eu-west-1_GtAInACMG_Full-access/CognitoIdentityCredentials\",\"eu-west-1_GtAInACMG_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
             ]
           ]
         },
@@ -771,6 +873,36 @@
                 "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
               },
               "/resolvers/Mutation.createTodo.init.1.req.vtl"
+            ]
+          ]
+        },
+        "ResponseMappingTemplate": "$util.toJson({})"
+      }
+    },
+    "MutationcreateTodoauth0FunctionMutationcreateTodoauth0FunctionAppSyncFunction21817E36": {
+      "Type": "AWS::AppSync::FunctionConfiguration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+        },
+        "DataSourceName": {
+          "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
+        },
+        "Name": "MutationcreateTodoauth0Function",
+        "FunctionVersion": "2018-05-29",
+        "RequestMappingTemplateS3Location": {
+          "Fn::Join": [
+            "",
+            [
+              "s3://",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
+              },
+              "/",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
+              },
+              "/resolvers/Mutation.createTodo.auth.1.req.vtl"
             ]
           ]
         },
@@ -851,6 +983,12 @@
             },
             {
               "Fn::GetAtt": [
+                "MutationcreateTodoauth0FunctionMutationcreateTodoauth0FunctionAppSyncFunction21817E36",
+                "FunctionId"
+              ]
+            },
+            {
+              "Fn::GetAtt": [
                 "QuerygetTodopostAuth0FunctionQuerygetTodopostAuth0FunctionAppSyncFunction6BE14593",
                 "FunctionId"
               ]
@@ -875,7 +1013,23 @@
               {
                 "Ref": "TodoTable"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"deltaSyncTableTtl\", 30))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"eu-west-1_GtAInACMG_Full-access/CognitoIdentityCredentials\",\"eu-west-1_GtAInACMG_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"deltaSyncTableTtl\", 30))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackauthRoleNameFB872D50Ref"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackunauthRoleName49F3C1FERef"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"eu-west-1_GtAInACMG_Full-access/CognitoIdentityCredentials\",\"eu-west-1_GtAInACMG_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
             ]
           ]
         },
@@ -911,6 +1065,57 @@
         },
         "ResponseMappingTemplate": "$util.toJson({})"
       }
+    },
+    "MutationupdateTodoauth0FunctionMutationupdateTodoauth0FunctionAppSyncFunction1E4A3112": {
+      "Type": "AWS::AppSync::FunctionConfiguration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+        },
+        "DataSourceName": {
+          "Fn::GetAtt": [
+            "TodoDataSource",
+            "Name"
+          ]
+        },
+        "Name": "MutationupdateTodoauth0Function",
+        "FunctionVersion": "2018-05-29",
+        "RequestMappingTemplateS3Location": {
+          "Fn::Join": [
+            "",
+            [
+              "s3://",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
+              },
+              "/",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
+              },
+              "/resolvers/Mutation.updateTodo.auth.1.req.vtl"
+            ]
+          ]
+        },
+        "ResponseMappingTemplateS3Location": {
+          "Fn::Join": [
+            "",
+            [
+              "s3://",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
+              },
+              "/",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
+              },
+              "/resolvers/Mutation.updateTodo.auth.1.res.vtl"
+            ]
+          ]
+        }
+      },
+      "DependsOn": [
+        "TodoDataSource"
+      ]
     },
     "MutationUpdateTodoDataResolverFnMutationUpdateTodoDataResolverFnAppSyncFunctionBC238C49": {
       "Type": "AWS::AppSync::FunctionConfiguration",
@@ -986,6 +1191,12 @@
             },
             {
               "Fn::GetAtt": [
+                "MutationupdateTodoauth0FunctionMutationupdateTodoauth0FunctionAppSyncFunction1E4A3112",
+                "FunctionId"
+              ]
+            },
+            {
+              "Fn::GetAtt": [
                 "QuerygetTodopostAuth0FunctionQuerygetTodopostAuth0FunctionAppSyncFunction6BE14593",
                 "FunctionId"
               ]
@@ -1010,12 +1221,79 @@
               {
                 "Ref": "TodoTable"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"deltaSyncTableTtl\", 30))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"eu-west-1_GtAInACMG_Full-access/CognitoIdentityCredentials\",\"eu-west-1_GtAInACMG_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"deltaSyncTableTtl\", 30))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackauthRoleNameFB872D50Ref"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackunauthRoleName49F3C1FERef"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"eu-west-1_GtAInACMG_Full-access/CognitoIdentityCredentials\",\"eu-west-1_GtAInACMG_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
       }
+    },
+    "MutationdeleteTodoauth0FunctionMutationdeleteTodoauth0FunctionAppSyncFunctionC82C218C": {
+      "Type": "AWS::AppSync::FunctionConfiguration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+        },
+        "DataSourceName": {
+          "Fn::GetAtt": [
+            "TodoDataSource",
+            "Name"
+          ]
+        },
+        "Name": "MutationdeleteTodoauth0Function",
+        "FunctionVersion": "2018-05-29",
+        "RequestMappingTemplateS3Location": {
+          "Fn::Join": [
+            "",
+            [
+              "s3://",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
+              },
+              "/",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
+              },
+              "/resolvers/Mutation.deleteTodo.auth.1.req.vtl"
+            ]
+          ]
+        },
+        "ResponseMappingTemplateS3Location": {
+          "Fn::Join": [
+            "",
+            [
+              "s3://",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
+              },
+              "/",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
+              },
+              "/resolvers/Mutation.deleteTodo.auth.1.res.vtl"
+            ]
+          ]
+        }
+      },
+      "DependsOn": [
+        "TodoDataSource"
+      ]
     },
     "MutationDeleteTodoDataResolverFnMutationDeleteTodoDataResolverFnAppSyncFunction3879153F": {
       "Type": "AWS::AppSync::FunctionConfiguration",
@@ -1085,6 +1363,12 @@
           "Functions": [
             {
               "Fn::GetAtt": [
+                "MutationdeleteTodoauth0FunctionMutationdeleteTodoauth0FunctionAppSyncFunctionC82C218C",
+                "FunctionId"
+              ]
+            },
+            {
+              "Fn::GetAtt": [
                 "QuerygetTodopostAuth0FunctionQuerygetTodopostAuth0FunctionAppSyncFunction6BE14593",
                 "FunctionId"
               ]
@@ -1109,11 +1393,57 @@
               {
                 "Ref": "TodoTable"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"deltaSyncTableTtl\", 30))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"eu-west-1_GtAInACMG_Full-access/CognitoIdentityCredentials\",\"eu-west-1_GtAInACMG_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"deltaSyncTableTtl\", 30))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackauthRoleNameFB872D50Ref"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackunauthRoleName49F3C1FERef"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"eu-west-1_GtAInACMG_Full-access/CognitoIdentityCredentials\",\"eu-west-1_GtAInACMG_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
             ]
           ]
         },
         "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)"
+      }
+    },
+    "SubscriptiononCreateTodoauth0FunctionSubscriptiononCreateTodoauth0FunctionAppSyncFunction042EF9E1": {
+      "Type": "AWS::AppSync::FunctionConfiguration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
+        },
+        "DataSourceName": {
+          "Ref": "referencetotransformerrootstackGraphQLAPINONEDS2BA9D1C8Name"
+        },
+        "Name": "SubscriptiononCreateTodoauth0Function",
+        "FunctionVersion": "2018-05-29",
+        "RequestMappingTemplateS3Location": {
+          "Fn::Join": [
+            "",
+            [
+              "s3://",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentBucket7592718ARef"
+              },
+              "/",
+              {
+                "Ref": "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref"
+              },
+              "/resolvers/Subscription.onCreateTodo.auth.1.req.vtl"
+            ]
+          ]
+        },
+        "ResponseMappingTemplate": "$util.toJson({})"
       }
     },
     "SubscriptionOnCreateTodoDataResolverFnSubscriptionOnCreateTodoDataResolverFnAppSyncFunction462A70C9": {
@@ -1174,6 +1504,12 @@
           "Functions": [
             {
               "Fn::GetAtt": [
+                "SubscriptiononCreateTodoauth0FunctionSubscriptiononCreateTodoauth0FunctionAppSyncFunction042EF9E1",
+                "FunctionId"
+              ]
+            },
+            {
+              "Fn::GetAtt": [
                 "QuerygetTodopostAuth0FunctionQuerygetTodopostAuth0FunctionAppSyncFunction6BE14593",
                 "FunctionId"
               ]
@@ -1194,7 +1530,23 @@
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"adminRoles\", [\"eu-west-1_GtAInACMG_Full-access/CognitoIdentityCredentials\",\"eu-west-1_GtAInACMG_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackauthRoleNameFB872D50Ref"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackunauthRoleName49F3C1FERef"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"eu-west-1_GtAInACMG_Full-access/CognitoIdentityCredentials\",\"eu-west-1_GtAInACMG_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
             ]
           ]
         },
@@ -1212,6 +1564,12 @@
         "Kind": "PIPELINE",
         "PipelineConfig": {
           "Functions": [
+            {
+              "Fn::GetAtt": [
+                "SubscriptiononCreateTodoauth0FunctionSubscriptiononCreateTodoauth0FunctionAppSyncFunction042EF9E1",
+                "FunctionId"
+              ]
+            },
             {
               "Fn::GetAtt": [
                 "QuerygetTodopostAuth0FunctionQuerygetTodopostAuth0FunctionAppSyncFunction6BE14593",
@@ -1234,7 +1592,23 @@
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"adminRoles\", [\"eu-west-1_GtAInACMG_Full-access/CognitoIdentityCredentials\",\"eu-west-1_GtAInACMG_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackauthRoleNameFB872D50Ref"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackunauthRoleName49F3C1FERef"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"eu-west-1_GtAInACMG_Full-access/CognitoIdentityCredentials\",\"eu-west-1_GtAInACMG_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
             ]
           ]
         },
@@ -1252,6 +1626,12 @@
         "Kind": "PIPELINE",
         "PipelineConfig": {
           "Functions": [
+            {
+              "Fn::GetAtt": [
+                "SubscriptiononCreateTodoauth0FunctionSubscriptiononCreateTodoauth0FunctionAppSyncFunction042EF9E1",
+                "FunctionId"
+              ]
+            },
             {
               "Fn::GetAtt": [
                 "QuerygetTodopostAuth0FunctionQuerygetTodopostAuth0FunctionAppSyncFunction6BE14593",
@@ -1274,7 +1654,23 @@
               {
                 "Ref": "referencetotransformerrootstackGraphQLAPI20497F53ApiId"
               },
-              "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"adminRoles\", [\"eu-west-1_GtAInACMG_Full-access/CognitoIdentityCredentials\",\"eu-west-1_GtAInACMG_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
+              "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackauthRoleNameFB872D50Ref"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:aws:sts::",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":assumed-role/",
+              {
+                "Ref": "referencetotransformerrootstackunauthRoleName49F3C1FERef"
+              },
+              "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"adminRoles\", [\"eu-west-1_GtAInACMG_Full-access/CognitoIdentityCredentials\",\"eu-west-1_GtAInACMG_Manage-only/CognitoIdentityCredentials\"]))\n$util.toJson({})"
             ]
           ]
         },

@@ -16,15 +16,86 @@ import {
 } from "@aws-amplify/ui-react";
 import "./style.css";
 
+import { DataStore } from 'aws-amplify/datastore';
+import { Todo } from './models';
+
 
 
 import { Amplify } from "aws-amplify";
-// import { generateClient } from 'aws-amplify/api';
-// import { createTodo, updateTodo, deleteTodo } from './graphql/mutations';
-// import { listTodos } from './graphql/queries';
+ import { generateClient } from 'aws-amplify/api';
+ import { createTodo, updateTodo, deleteTodo } from './graphql/mutations';
+//  import { listTodos } from './graphql/queries';
 
 import config from './amplifyconfiguration.json';
-Amplify.configure(config);
+// Amplify.configure(config);
+
+Amplify.configure(config, {
+  API: {
+    GraphQL:  {
+      headers: async () => ({
+        'My-Custom-Header': 'my value'
+      })
+    }
+  }
+});
+
+
+Amplify.configure({
+  API: {
+    GraphQL: {
+      endpoint: 'https://h3bsxlgkjnerfkp3sjrxqsj7e4.appsync-api.eu-west-1.amazonaws.com/graphql',
+      region: 'eu-west-1',
+      defaultAuthMode: 'apiKey',
+      apiKey: 'da2-fsa6jh53evgxjooo6ohiktkms4'
+    }
+  }
+});
+
+await DataStore.save(
+  new Todo({
+    name: 'My first todo',
+    description: 'Hello world!'
+  })
+);
+
+
+ const client = generateClient();
+
+
+ const todo = { name: 'My first todo', description: 'Hello world!' };
+
+ /* create a todo */
+ await client.graphql({
+   query: createTodo,
+   variables: {
+     input: todo
+   }
+ });
+ 
+ /* update a todo */
+ await client.graphql({
+   query: updateTodo,
+   variables: {
+     input: {
+       id: 'ENTER_TODO_ID_HERE',
+       name: 'Updated todo info'
+     }
+   }
+ });
+ 
+ /* delete a todo */
+ await client.graphql({
+   query: deleteTodo,
+   variables: {
+     input: {
+       id: 'ENTER_TODO_ID_HERE'
+     }
+   }
+ });
+
+
+
+//  const todos = await client.graphql({ query: listTodos });
 
 
 
@@ -32,7 +103,8 @@ Amplify.configure(config);
 
 
 
-// const client = generateClient();
+
+
 
 // const result = await client.graphql({ query: listTodos });
 // console.log(result);

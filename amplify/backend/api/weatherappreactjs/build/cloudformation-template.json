@@ -8,6 +8,12 @@
             "Type": "String",
             "Default": "AppSyncSimpleTransform"
         },
+        "authRoleName": {
+            "Type": "String"
+        },
+        "unauthRoleName": {
+            "Type": "String"
+        },
         "DynamoDBModelTableReadIOPS": {
             "Type": "Number",
             "Default": 5,
@@ -72,7 +78,12 @@
                             }
                         ]
                     ]
-                }
+                },
+                "AdditionalAuthenticationProviders": [
+                    {
+                        "AuthenticationType": "AWS_IAM"
+                    }
+                ]
             }
         },
         "GraphQLAPITransformerSchema3CB2AE18": {
@@ -111,8 +122,8 @@
                         "ApiId"
                     ]
                 },
-                "Description": "gecici",
-                "Expires": 1707566145
+                "Description": "api key description",
+                "Expires": 1707666361
             }
         },
         "GraphQLAPINONEDS95A13CF0": {
@@ -361,6 +372,12 @@
                     },
                     "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref": {
                         "Ref": "S3DeploymentRootKey"
+                    },
+                    "referencetotransformerrootstackauthRoleNameFB872D50Ref": {
+                        "Ref": "authRoleName"
+                    },
+                    "referencetotransformerrootstackunauthRoleName49F3C1FERef": {
+                        "Ref": "unauthRoleName"
                     }
                 }
             },

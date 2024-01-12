@@ -2,5 +2,5 @@
   "AppSyncApiName": "weatherappreactjs",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
   "DynamoDBEnableServerSideEncryption": false,
-  "AuthModeLastUpdated": "2024-01-11T11:32:27.064Z"
+  "AuthModeLastUpdated": "2024-01-12T15:32:03.698Z"
 }
