@@ -172,6 +172,19 @@
         }
       }
     },
+    "functionmyWeatherAppFunction": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": "https://s3.amazonaws.com/amplify-amplify2e7a5eb004df4-staging-102107-deployment/amplify-cfn-templates/function/myWeatherAppFunction-cloudformation-template.json",
+        "Parameters": {
+          "CloudWatchRule": "cron(32 18 15 * ? *)",
+          "openweatherApiKey": "2b69636d4dd08520be15ecb59b7892cc",
+          "deploymentBucketName": "amplify-amplify2e7a5eb004df4-staging-102107-deployment",
+          "s3Key": "amplify-builds/myWeatherAppFunction-344f563631694b6a4858-build.zip",
+          "env": "staging"
+        }
+      }
+    },
     "storagestorage4weatherapp": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {

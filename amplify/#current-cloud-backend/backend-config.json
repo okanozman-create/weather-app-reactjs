@@ -23,7 +23,40 @@
     }
   },
   "auth": {},
-  "function": {},
+  "function": {
+    "myWeatherAppFunction": {
+      "build": true,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_myWeatherAppFunction_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "myWeatherAppFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_myWeatherAppFunction_openweatherApiKey": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "myWeatherAppFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_myWeatherAppFunction_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "myWeatherAppFunction"
+        }
+      ]
+    }
+  },
   "storage": {
     "storage4weatherapp": {
       "dependsOn": [],

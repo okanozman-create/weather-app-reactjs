@@ -6,8 +6,8 @@ import { Amplify } from "aws-amplify";
 
 Amplify.configure(config);
 
-const apiKey = process.env.REACT_APP_ENV_API_KEY;
-console.log("apiKey : " + apiKey);
+//  const apiKey = process.env.OPENWEATHER_API_KEY;
+// console.log("apiKey : " + apiKey);
 
 const App = () => {
   const [city, setCity] = useState("");
@@ -19,9 +19,14 @@ const App = () => {
   async function fetchData() {
     try {
       setIsLoading(true);
-      const res = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
-      );
+      // const res = await fetch(
+      //   `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
+      // );
+      const lambdaEndpoint = 'https://nb5ol5oy4g.execute-api.eu-west-1.amazonaws.com/default';
+      const res = await fetch(`${lambdaEndpoint}/myWeatherAppFunction-staging?city=${city}`);
+
+
+
 
       if (containerRes.find((el) => el.url === res.url)) return;
       if (!containerRes.find((el) => el.url === res.url))
@@ -38,6 +43,7 @@ const App = () => {
       if (!res.ok) throw new Error("Something went wrong...");
 
       const data = await res.json();
+      console.log(data)
 
       setError("");
       setWeatherData(data);

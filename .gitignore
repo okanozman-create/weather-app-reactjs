@@ -16,7 +16,7 @@ amplify/backend/auth/
  build/
  dist/
 #  aws-exports.js
-src/aws-exports.js
+# src/aws-exports.js
 
  awsconfiguration.json
  amplifyconfiguration.json

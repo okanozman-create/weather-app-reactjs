@@ -17,6 +17,13 @@
       },
       "storage": {
         "storage4weatherapp": {}
+      },
+      "function": {
+        "myWeatherAppFunction": {
+          "openweatherApiKey": "2b69636d4dd08520be15ecb59b7892cc",
+          "deploymentBucketName": "amplify-amplify2e7a5eb004df4-staging-102107-deployment",
+          "s3Key": "amplify-builds/myWeatherAppFunction-344f563631694b6a4858-build.zip"
+        }
       }
     }
   }

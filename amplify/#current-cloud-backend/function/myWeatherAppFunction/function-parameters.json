@@ -1,0 +1,10 @@
+{
+  "permissions": {},
+  "lambdaLayers": [],
+  "environmentVariableList": [
+    {
+      "cloudFormationParameterName": "openweatherApiKey",
+      "environmentVariableName": "OPENWEATHER_API_KEY"
+    }
+  ]
+}
