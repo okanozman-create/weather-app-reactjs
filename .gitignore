@@ -5,6 +5,7 @@
  node_modules/
 
 #amplify
+amplify/backend/auth/
  amplify/\#current-cloud-backend
  amplify/.config/local-*
  amplify/logs
