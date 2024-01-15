@@ -22,8 +22,6 @@ import { Todo } from './models';
 
 
 import { Amplify } from "aws-amplify";
- import { generateClient } from 'aws-amplify/api';
- import { createTodo, updateTodo, deleteTodo } from './graphql/mutations';
 //  import { listTodos } from './graphql/queries';
 
 import config from './amplifyconfiguration.json';
@@ -50,50 +48,6 @@ Amplify.configure({
     }
   }
 });
-
-await DataStore.save(
-  new Todo({
-    name: 'My first todo',
-    description: 'Hello world!'
-  })
-);
-
-
- const client = generateClient();
-
-
- const todo = { name: 'My first todo', description: 'Hello world!' };
-
- /* create a todo */
- await client.graphql({
-   query: createTodo,
-   variables: {
-     input: todo
-   }
- });
- 
- /* update a todo */
- await client.graphql({
-   query: updateTodo,
-   variables: {
-     input: {
-       id: 'ENTER_TODO_ID_HERE',
-       name: 'Updated todo info'
-     }
-   }
- });
- 
- /* delete a todo */
- await client.graphql({
-   query: deleteTodo,
-   variables: {
-     input: {
-       id: 'ENTER_TODO_ID_HERE'
-     }
-   }
- });
-
-
 
 //  const todos = await client.graphql({ query: listTodos });
 
@@ -156,7 +110,7 @@ await DataStore.save(
 
 
 const apiKey = process.env.REACT_APP_ENV_API_KEY;
-console.log(apiKey);
+console.log("apiKey : " + apiKey);
 
 const App = () =>{
 
