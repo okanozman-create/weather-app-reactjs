@@ -36,7 +36,7 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "AppSync",
-      "lastPushTimeStamp": "2024-01-15T19:54:50.992Z",
+      "lastPushTimeStamp": "2024-01-15T20:22:44.825Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify2e7a5eb004df4-staging-102107-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apiweatherappreactjs"
@@ -51,20 +51,20 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda",
       "dependsOn": [],
-      "lastBuildTimeStamp": "2024-01-15T19:53:45.883Z",
+      "lastBuildTimeStamp": "2024-01-15T20:21:39.491Z",
       "lastBuildType": "PROD",
-      "lastPackageTimeStamp": "2024-01-15T19:53:45.907Z",
-      "distZipFilename": "myWeatherAppFunction-344f563631694b6a4858-build.zip",
+      "lastPackageTimeStamp": "2024-01-15T20:21:39.527Z",
+      "distZipFilename": "myWeatherAppFunction-6b4d6469484151707659-build.zip",
       "lastDevBuildTimeStamp": "2024-01-15T16:32:35.142Z",
       "s3Bucket": {
         "deploymentBucketName": "amplify-amplify2e7a5eb004df4-staging-102107-deployment",
-        "s3Key": "amplify-builds/myWeatherAppFunction-344f563631694b6a4858-build.zip"
+        "s3Key": "amplify-builds/myWeatherAppFunction-6b4d6469484151707659-build.zip"
       },
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify2e7a5eb004df4-staging-102107-deployment/amplify-cfn-templates/function/myWeatherAppFunction-cloudformation-template.json",
         "logicalId": "functionmyWeatherAppFunction"
       },
-      "lastPushTimeStamp": "2024-01-15T19:54:51.369Z",
+      "lastPushTimeStamp": "2024-01-15T20:22:45.256Z",
       "output": {
         "LambdaExecutionRoleArn": "arn:aws:iam::511653339525:role/weatherappreactjsLambdaRolee88a9d50-staging",
         "Region": "eu-west-1",
@@ -73,7 +73,7 @@
         "Name": "myWeatherAppFunction-staging",
         "LambdaExecutionRole": "weatherappreactjsLambdaRolee88a9d50-staging"
       },
-      "lastPushDirHash": "UduwgfugZ9507Ntm+kQZ1xa03f8="
+      "lastPushDirHash": "BnHUzYP89UYjmOlV0bx8gzcilfg="
     }
   },
   "storage": {
@@ -85,7 +85,7 @@
         "BucketName": "weatherapp4thisbucket102107-staging",
         "Region": "eu-west-1"
       },
-      "lastPushTimeStamp": "2024-01-15T19:54:51.012Z",
+      "lastPushTimeStamp": "2024-01-15T20:22:44.848Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify2e7a5eb004df4-staging-102107-deployment/amplify-cfn-templates/storage/cloudformation-template.json",
         "logicalId": "storagestorage4weatherapp"

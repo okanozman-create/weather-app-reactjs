@@ -2,6 +2,15 @@
 const https = require('https');
 
 exports.handler = async (event) => {
+    
+     const allowedOrigins = [
+        'http://localhost:3000',
+        'https://master2.d35m01a902r94k.amplifyapp.com'
+    ];
+
+    
+    
+    
     // Get the city from the event's query parameters
     const city = event.queryStringParameters.city;
     const apiKey = process.env.OPENWEATHER_API_KEY;
@@ -13,10 +22,16 @@ exports.handler = async (event) => {
 
             res.on('data', (chunk) => { data += chunk; });
             res.on('end', () => {
+                
+                // Check the incoming origin
+                const origin = event.headers.origin;
+                const allowedOrigin = allowedOrigins.includes(origin) ? origin : allowedOrigins[0]; // Default to the first allowed origin if not matching
+                
+                
                 resolve({
                     statusCode: 200,
                     headers: {
-                        "Access-Control-Allow-Origin": "http://localhost:3000", // Enable CORS
+                        "Access-Control-Allow-Origin": allowedOrigin,
                         "Access-Control-Allow-Headers": "*"
                     },
                     body: data

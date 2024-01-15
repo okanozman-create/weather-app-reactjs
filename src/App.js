@@ -6,8 +6,7 @@ import { Amplify } from "aws-amplify";
 
 Amplify.configure(config);
 
-//  const apiKey = process.env.OPENWEATHER_API_KEY;
-// console.log("apiKey : " + apiKey);
+
 
 const App = () => {
   const [city, setCity] = useState("");

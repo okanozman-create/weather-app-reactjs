@@ -22,7 +22,7 @@
         "myWeatherAppFunction": {
           "openweatherApiKey": "2b69636d4dd08520be15ecb59b7892cc",
           "deploymentBucketName": "amplify-amplify2e7a5eb004df4-staging-102107-deployment",
-          "s3Key": "amplify-builds/myWeatherAppFunction-344f563631694b6a4858-build.zip"
+          "s3Key": "amplify-builds/myWeatherAppFunction-6b4d6469484151707659-build.zip"
         }
       }
     }
