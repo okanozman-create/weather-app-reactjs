@@ -1,132 +1,22 @@
 import { useEffect, useState } from "react";
 import IMAGES from "./images";
 import toDateFunction from "./toDateFunction";
-
-
-import {
-  // Card,
-  // Button,
-  // Flex,
-  // Heading,
-  // Text,
-  // TextField,
-  // View,
-  // WithAuthenticatorProps,
-  //  withAuthenticator,
-} from "@aws-amplify/ui-react";
-import "./style.css";
-
-import { DataStore } from 'aws-amplify/datastore';
-import { Todo } from './models';
-
-
-
+import config from "./aws-exports";
 import { Amplify } from "aws-amplify";
-//  import { listTodos } from './graphql/queries';
 
-import config from './amplifyconfiguration.json';
-// Amplify.configure(config);
-
-Amplify.configure(config, {
-  API: {
-    GraphQL:  {
-      headers: async () => ({
-        'My-Custom-Header': 'my value'
-      })
-    }
-  }
-});
-
-
-Amplify.configure({
-  API: {
-    GraphQL: {
-      endpoint: 'https://h3bsxlgkjnerfkp3sjrxqsj7e4.appsync-api.eu-west-1.amazonaws.com/graphql',
-      region: 'eu-west-1',
-      defaultAuthMode: 'apiKey',
-      apiKey: 'da2-fsa6jh53evgxjooo6ohiktkms4'
-    }
-  }
-});
-
-//  const todos = await client.graphql({ query: listTodos });
-
-
-
-
-
-
-
-
-
-
-// const result = await client.graphql({ query: listTodos });
-// console.log(result);
-
-// const result = await client.graphql({
-//   query: createTodo,
-//   variables: {
-//     input: {
-//       name: 'My first todo!'
-//     }
-//   }
-// });
-// console.log(result)
-
-
-
-// try {
-//   const result = await client.graphql({
-//     query: updateTodo,
-//     variables: {
-//       input: {
-//         id: '<...>', // Replace with the actual ID
-//         name: 'My first updated todo!'
-//       }
-//     }
-//   });
-
-//   console.log('Update Result:', result);
-// } catch (error) {
-//   console.error('Error updating todo:', error);
-// }
-
-
-
-// const result = await client.graphql({
-//   query: deleteTodo,
-//   variables: {
-//     input: {
-//       id: '<...>'
-//     }
-//   }
-// });
-// console.log(result);
-
-
-
-
-
-
+Amplify.configure(config);
 
 const apiKey = process.env.REACT_APP_ENV_API_KEY;
 console.log("apiKey : " + apiKey);
 
-const App = () =>{
-
-//  function App({signOut}) {
+const App = () => {
   const [city, setCity] = useState("");
   const [weatherData, setWeatherData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [containerRes, setConatinerRes] = useState([]);
 
- 
-
-
-
-
-async function fetchData() {
+  async function fetchData() {
     try {
       setIsLoading(true);
       const res = await fetch(
@@ -148,7 +38,6 @@ async function fetchData() {
       if (!res.ok) throw new Error("Something went wrong...");
 
       const data = await res.json();
-    
 
       setError("");
       setWeatherData(data);
@@ -160,22 +49,13 @@ async function fetchData() {
     }
   }
 
-
-
   function handleSearchClick() {
     fetchData();
     setCity("");
   }
 
-
- return (
+  return (
     <div className="App">
-
-
-
-
-
-
       <div className="container">
         <Search
           city={city}
@@ -192,16 +72,12 @@ async function fetchData() {
           </>
         )}
         {error && <ErrorMessage message={error} />}
-        </div>
       </div>
-  
+    </div>
   );
-}
+};
 
-export default App
-
-
-
+export default App;
 
 function ErrorMessage({ message }) {
   return <p className="error">{message}</p>;
@@ -211,24 +87,21 @@ function Loader() {
   return <p className="loader">Loading...</p>;
 }
 
-function Search({ city, setCity, onSearchClick,fetchData }) {
-
+function Search({ city, setCity, onSearchClick, fetchData }) {
   useEffect(() => {
     const handleKeyPress = async function (e) {
-      if (e.key === 'Enter') {
+      if (e.key === "Enter") {
         await fetchData(); // Wait for fetchData to complete
-        setCity('');
+        setCity("");
       }
     };
 
-    document.addEventListener('keydown', handleKeyPress);
+    document.addEventListener("keydown", handleKeyPress);
 
     return () => {
-      document.removeEventListener('keydown', handleKeyPress);
+      document.removeEventListener("keydown", handleKeyPress);
     };
   }, [fetchData, setCity]);
-
-
 
   return (
     <div className="search-box">
