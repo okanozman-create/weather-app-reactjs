@@ -18,6 +18,7 @@ amplify/backend/auth/
 #  aws-exports.js
 # src/aws-exports.js
 
+amplify/team-provider-info.json
  awsconfiguration.json
  amplifyconfiguration.json
  amplifyconfiguration.dart

@@ -6,8 +6,6 @@ import { Amplify } from "aws-amplify";
 
 Amplify.configure(config);
 
-
-
 const App = () => {
   const [city, setCity] = useState("");
   const [weatherData, setWeatherData] = useState({});
@@ -18,14 +16,12 @@ const App = () => {
   async function fetchData() {
     try {
       setIsLoading(true);
-      // const res = await fetch(
-      //   `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
-      // );
-      const lambdaEndpoint = 'https://nb5ol5oy4g.execute-api.eu-west-1.amazonaws.com/default';
-      const res = await fetch(`${lambdaEndpoint}/myWeatherAppFunction-staging?city=${city}`);
 
-
-
+      const lambdaEndpoint =
+        "https://nb5ol5oy4g.execute-api.eu-west-1.amazonaws.com/default";
+      const res = await fetch(
+        `${lambdaEndpoint}/myWeatherAppFunction-staging?city=${city}`
+      );
 
       if (containerRes.find((el) => el.url === res.url)) return;
       if (!containerRes.find((el) => el.url === res.url))
@@ -42,12 +38,10 @@ const App = () => {
       if (!res.ok) throw new Error("Something went wrong...");
 
       const data = await res.json();
-      // console.log(data)
 
       setError("");
       setWeatherData(data);
     } catch (error) {
-      // console.error(error);
       setError(error.message);
     } finally {
       setIsLoading(false);
@@ -96,7 +90,7 @@ function Search({ city, setCity, onSearchClick, fetchData }) {
   useEffect(() => {
     const handleKeyPress = async function (e) {
       if (e.key === "Enter") {
-        await fetchData(); // Wait for fetchData to complete
+        await fetchData(); 
         setCity("");
       }
     };

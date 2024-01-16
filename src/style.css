@@ -17,7 +17,7 @@ body {
 
 .container {
   background-color: #495057;
-  max-width: 100%; 
+  max-width: 100%;
   height: 80vh;
   margin: 4rem auto;
   padding: 3.2rem 3.2rem;
@@ -102,9 +102,9 @@ p {
 
 .main-img img {
   max-width: 100%;
-  height: auto; 
-  width: 10rem; 
-  max-height: 10rem; 
+  height: auto;
+  width: 10rem;
+  max-height: 10rem;
 }
 
 input::placeholder {
@@ -141,20 +141,17 @@ input::placeholder {
   color: red;
 }
 
-
-
- @media (min-width: 65em) {
+@media (min-width: 65em) {
   .container {
     max-width: 40%;
   }
-}  
-
+}
 
 @media (max-width: 25em) {
-  .humidity p{
- font-size: 1.8rem;
-  }
-  .wind p{
+  .humidity p {
     font-size: 1.8rem;
   }
-}  
+  .wind p {
+    font-size: 1.8rem;
+  }
+}
