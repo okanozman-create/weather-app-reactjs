@@ -42,7 +42,7 @@ const App = () => {
       if (!res.ok) throw new Error("Something went wrong...");
 
       const data = await res.json();
-      console.log(data)
+      // console.log(data)
 
       setError("");
       setWeatherData(data);
