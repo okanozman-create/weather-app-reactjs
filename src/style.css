@@ -110,7 +110,7 @@ p {
 input::placeholder {
   font-weight: bold;
   opacity: 0.5;
-  color: red;
+  color: #000307;
   font-family: "Griffy";
 }
 
@@ -132,13 +132,13 @@ input::placeholder {
   font-weight: 700;
   font-size: 3.6rem;
   letter-spacing: 4px;
-  color: red;
+  color: #0d2949;
   text-align: center;
 }
 
 .error {
   text-align: center;
-  color: red;
+  color: #00ff19;
 }
 
 @media (min-width: 65em) {
@@ -147,11 +147,16 @@ input::placeholder {
   }
 }
 
-@media (max-width: 25em) {
+@media (max-width: 30em) {
+  .search-logo {
+    padding: 1rem 2rem;
+  }
+
   .humidity p {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+    margin-right: 3rem;
   }
   .wind p {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
 }

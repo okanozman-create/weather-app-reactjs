@@ -11,7 +11,6 @@ const App = () => {
   const [weatherData, setWeatherData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const [containerRes, setConatinerRes] = useState([]);
 
   async function fetchData() {
     try {
@@ -23,21 +22,16 @@ const App = () => {
         `${lambdaEndpoint}/myWeatherAppFunction-staging?city=${city}`
       );
 
-      if (containerRes.find((el) => el.url === res.url)) return;
-      if (!containerRes.find((el) => el.url === res.url))
-        setConatinerRes((prevContainer) => {
-          const newContainerRes = [res, ...prevContainer];
-          if (newContainerRes.length > 10) {
-            newContainerRes.pop();
-          }
-
-          return newContainerRes;
-        });
-
-      if (res.status === 404) throw new Error("City not found");
-      if (!res.ok) throw new Error("Something went wrong...");
-
       const data = await res.json();
+      console.log(data);
+
+      if (data.cod === "404") {
+        throw new Error("Please check the city name and try again.");
+      }
+
+      if (!res.ok) {
+        throw new Error(data.message || "Something went wrong...");
+      }
 
       setError("");
       setWeatherData(data);
@@ -90,7 +84,7 @@ function Search({ city, setCity, onSearchClick, fetchData }) {
   useEffect(() => {
     const handleKeyPress = async function (e) {
       if (e.key === "Enter") {
-        await fetchData(); 
+        await fetchData();
         setCity("");
       }
     };
@@ -122,58 +116,70 @@ function Search({ city, setCity, onSearchClick, fetchData }) {
 }
 
 function Main({ weatherData }) {
-  const temp = Math.round(weatherData?.main?.temp || null);
+  const hasWeatherData =
+    weatherData && weatherData.weather && weatherData.weather.length > 0;
 
-  const condition =
-    Object.keys(weatherData).length !== 0 ? weatherData.weather[0]?.main : null;
+  const temp = hasWeatherData ? Math.round(weatherData.main.temp) : null;
+  const condition = hasWeatherData ? weatherData.weather[0].main : null;
+
   function checkWeather(condition) {
-    if (condition === "Rain") return IMAGES.rain;
-    if (condition === "Snow") return IMAGES.snow;
-    if (condition === "Clouds") return IMAGES.cloud;
-    if (condition === "Clear") return IMAGES.clear;
-    if (condition === "Mist") return IMAGES.haze;
-    if (condition === "Haze") return IMAGES.haze;
-    else {
-      return "";
+    if (!condition) {
+      return "Please check the city name and try again.";
+    }
+
+    switch (condition) {
+      case "Rain":
+        return IMAGES.rain;
+      case "Snow":
+        return IMAGES.snow;
+      case "Clouds":
+        return IMAGES.cloud;
+      case "Clear":
+        return IMAGES.clear;
+      case "Mist":
+      case "Haze":
+        return IMAGES.haze;
+      default:
+        return "";
     }
   }
 
   return (
     <div className="weather-details">
-      <h1>{weatherData.name}</h1>
-      <h3>{toDateFunction()}</h3>
-      <div className="new-flex">
-        {Object.keys(weatherData).length !== 0 && (
-          <div className="main-img">
-            <img src={checkWeather(condition)} alt="conditional-weather" />
-          </div>
-        )}
-        <div className="new-flex-2">
-          {Object.keys(weatherData).length !== 0 && (
-            <>
+      {hasWeatherData && (
+        <>
+          <h1>{weatherData.name}</h1>
+          <h3>{toDateFunction()}</h3>
+          <div className="new-flex">
+            <div className="main-img">
+              <img src={checkWeather(condition)} alt="conditional-weather" />
+            </div>
+            <div className="new-flex-2">
               <p>{temp} °C</p>
-              <p style={{ color: "#94d82d" }}>{weatherData.weather[0].main}</p>
-            </>
-          )}
-        </div>
-      </div>
+              <p style={{ color: "#94d82d" }}>{condition}</p>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }
 
 function Footer({ weatherData }) {
+  const hasWeatherData = weatherData && weatherData.main && weatherData.wind;
+
   return (
     <div className="footer">
-      {Object.keys(weatherData).length !== 0 && (
+      {hasWeatherData && (
         <>
           <div className="humidity">
             <img src={IMAGES.humidity} alt="humidity-logo" />
-            <p>Humidity: {weatherData.main?.humidity} %</p>
+            <p>Humidity: {weatherData.main.humidity} %</p>
           </div>
 
           <div className="wind">
             <img src={IMAGES.wind} alt="wind-logo" />
-            <p>Wind: {weatherData.wind?.speed} km/s</p>
+            <p>Wind: {weatherData.wind.speed} km/s</p>
           </div>
         </>
       )}
