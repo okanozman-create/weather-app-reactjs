@@ -2,7 +2,7 @@ React Weather Application with AWS Backend
 
 ---Project Overview---
 
-This React weather application provides real-time weather updates for different cities. It is enhanced with AWS services for backend functionality, including a secure GraphQL API, Lambda functions, and S3 bucket storage, ensuring both scalability and security.
+This React weather application provides real-time weather updates for different cities. It is enhanced with AWS services for backend functionality, including a secure GraphQL API, Lambda functions, and S3 bucket storage, ensuring both scalability and security. The application is also fully responsive, offering a seamless experience across various devices, including desktops, tablets, and smartphones.
 
 View Live Application: https://master2.d35m01a902r94k.amplifyapp.com/
 
