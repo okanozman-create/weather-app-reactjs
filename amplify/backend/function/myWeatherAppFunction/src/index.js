@@ -1,10 +1,7 @@
 const https = require("https");
 
 exports.handler = async (event) => {
-  const allowedOrigins = [
-    "http://localhost:3000",
-    "https://master2.d35m01a902r94k.amplifyapp.com",
-  ];
+  const allowedOrigins = ["https://master2.d35m01a902r94k.amplifyapp.com"];
 
   const city = event.queryStringParameters.city;
   const apiKey = process.env.OPENWEATHER_API_KEY;

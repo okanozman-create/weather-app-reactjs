@@ -23,7 +23,6 @@ const App = () => {
       );
 
       const data = await res.json();
-      console.log(data);
 
       if (data.cod === "404") {
         throw new Error("Please check the city name and try again.");
@@ -156,7 +155,7 @@ function Main({ weatherData }) {
             </div>
             <div className="new-flex-2">
               <p>{temp} °C</p>
-              <p style={{ color: "#94d82d" }}>{condition}</p>
+              <p style={{ color: "#0d2949" }}>{condition}</p>
             </div>
           </div>
         </>

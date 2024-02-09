@@ -12,11 +12,11 @@ body {
   font-family: "Rubik", sans-serif, "Agbalumo", "Griffy";
   font-weight: 400;
   line-height: 1;
-  color: #adb5bd;
+  color: #0d2949;
 }
 
 .container {
-  background-color: #495057;
+  background-color: #5b9dde;
   max-width: 100%;
   height: 80vh;
   margin: 4rem auto;
@@ -38,18 +38,22 @@ body {
   flex: 1;
   border: none;
   outline: none;
-  background-color: transparent;
+  background-color: transparent; 
   padding: 10px;
+}
+.input-field::placeholder {
+  color: #0d2949; 
+  font-size: 2rem; 
 }
 
 .search-logo {
   padding: 1.6rem 5rem;
-  background-color: #94d82d;
+  background-color: #ffac54;
   cursor: pointer;
   border-radius: 4rem;
 }
 .search-logo:hover {
-  background-color: #66a80f;
+  background-color: #ff9523;
 }
 .weather-details {
   display: flex;
@@ -67,7 +71,7 @@ h1 {
 h3 {
   font-family: "Agbalumo";
   font-weight: 500;
-  color: #94d82d;
+  color: #ffffff;
   font-size: 2.4rem;
 }
 
@@ -138,7 +142,7 @@ input::placeholder {
 
 .error {
   text-align: center;
-  color: #00ff19;
+  color: #ffffff;
 }
 
 @media (min-width: 65em) {
