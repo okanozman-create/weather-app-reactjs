@@ -42,13 +42,14 @@ The Lambda function is responsible for fetching weather data from the OpenWeathe
 ##  Conclusion
 This Weather App represents a practical application of modern web development technologies and cloud infrastructure to deliver real-time weather information in a user-friendly format. By leveraging React for the frontend and AWS services for the backend and deployment, the app ensures scalability, security, and ease of maintenance.
 
-##  Installation and Setup
-Clone the repository
-bash
-git clone https://github.com/okanozman-create/weather-app-reactjs.git
-Install dependencies
+## Installation and Setup
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/okanozman-create/contact-form-reactjs.git
+Install dependencies:
 npm install
-Run the application
+Run the application:
 npm start
 
 ## Usage
