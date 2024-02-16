@@ -15,29 +15,25 @@ const App = () => {
   const [weatherData, setWeatherData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  
-  
 
   async function fetchData() {
     try {
-  
       setIsLoading(true);
       setError("");
 
-      // const lambdaEndpoint =
-      //   "https://nb5ol5oy4g.execute-api.eu-west-1.amazonaws.com/default";
-      // const res = await fetch(
-      //   `${lambdaEndpoint}/myWeatherAppFunction-staging?city=${city}`
-      // );
+      const lambdaEndpoint =
+      "https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/default/myWeatherAppFunction-staging/get";
+      const res = await fetch(
+        `${lambdaEndpoint}/myWeatherAppFunction-staging?city=${city}`
+      );
 
-      const lambdaEndpoint = "https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/default/myWeatherAppFunction-staging/get";
+      // const lambdaEndpoint = "https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/default/myWeatherAppFunction-staging/get";
 
       // Construct the URL with the correct query parameters
-      const url = `${lambdaEndpoint}?city=${city}`;
-      
+      // const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
       // Make the fetch request to the Lambda function endpoint
-      const res = await fetch(url);
-      
+      // const res = await fetch(url);
 
       const data = await res.json();
 
@@ -55,7 +51,6 @@ const App = () => {
       setError(error.message);
     } finally {
       setIsLoading(false);
-     
     }
   }
 
@@ -86,9 +81,6 @@ const App = () => {
           </>
         )}
         {error && <ErrorMessage message={error} />}
-
-      
-       
       </div>
     </div>
   );
