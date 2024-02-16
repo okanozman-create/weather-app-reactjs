@@ -164,3 +164,11 @@ input::placeholder {
     font-size: 1.6rem;
   }
 }
+
+.imageContainer {
+  display: block; /* Ensure the image is a block element */
+  margin: 0 auto; /* Center the image horizontally */
+  max-width: 100%; /* Ensure the image doesn't exceed the container's width */
+  height: auto; /* Allow the height to adjust proportionally */
+width: 30rem;
+}

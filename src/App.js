@@ -1,6 +1,7 @@
 import { useState } from "react";
 import config from "./aws-exports";
 import { Amplify } from "aws-amplify";
+
 import ErrorMessage from "./components/error/ErrorMessage";
 import Loader from "./components/loader/Loader";
 import Search from "./components/search/Search";
@@ -14,10 +15,14 @@ const App = () => {
   const [weatherData, setWeatherData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  
+  
 
   async function fetchData() {
     try {
+  
       setIsLoading(true);
+      setError("");
 
       const lambdaEndpoint =
         "https://nb5ol5oy4g.execute-api.eu-west-1.amazonaws.com/default";
@@ -41,10 +46,15 @@ const App = () => {
       setError(error.message);
     } finally {
       setIsLoading(false);
+     
     }
   }
 
   function handleSearchClick() {
+    if (!city.trim()) {
+      setError("Please enter a city name.");
+      return;
+    }
     fetchData();
     setCity("");
   }
@@ -67,6 +77,9 @@ const App = () => {
           </>
         )}
         {error && <ErrorMessage message={error} />}
+
+      
+       
       </div>
     </div>
   );
