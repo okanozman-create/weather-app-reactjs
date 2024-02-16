@@ -24,11 +24,20 @@ const App = () => {
       setIsLoading(true);
       setError("");
 
-      const lambdaEndpoint =
-        "https://nb5ol5oy4g.execute-api.eu-west-1.amazonaws.com/default";
-      const res = await fetch(
-        `${lambdaEndpoint}/myWeatherAppFunction-staging?city=${city}`
-      );
+      // const lambdaEndpoint =
+      //   "https://nb5ol5oy4g.execute-api.eu-west-1.amazonaws.com/default";
+      // const res = await fetch(
+      //   `${lambdaEndpoint}/myWeatherAppFunction-staging?city=${city}`
+      // );
+
+      const lambdaEndpoint = "https://nb5ol5oy4g.execute-api.eu-west-1.amazonaws.com/default";
+
+      // Construct the URL with the correct query parameters
+      const url = `${lambdaEndpoint}?city=${city}`;
+      
+      // Make the fetch request to the Lambda function endpoint
+      const res = await fetch(url);
+      
 
       const data = await res.json();
 
