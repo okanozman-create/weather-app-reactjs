@@ -46,8 +46,7 @@ exports.handler = async (event) => {
   const appURL = process.env.AppURL;
   const city = event.queryStringParameters.city;
   const apiKey = process.env.OPENWEATHER_API_KEY;
-   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  // const url = `${appURL}?q=${city}&appid=${apiKey}&units=metric`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
   return new Promise((resolve, reject) => {
     https
@@ -58,13 +57,13 @@ exports.handler = async (event) => {
           data += chunk;
         });
         res.on("end", () => {
-          const origin = event.headers.origin;
-          const allowedOrigin = appURL.includes(origin) ? origin : appURL;
+          // const origin = event.headers.origin;
+
 
           resolve({
             statusCode: 200,
             headers: {
-              "Access-Control-Allow-Origin": allowedOrigin,
+              "Access-Control-Allow-Origin": appURL,
               "Access-Control-Allow-Headers": "Content-Type",
               "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
             },

@@ -30,7 +30,7 @@ const App = () => {
       //   `${lambdaEndpoint}/myWeatherAppFunction-staging?city=${city}`
       // );
 
-      const lambdaEndpoint = "https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/default/";
+      const lambdaEndpoint = "https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/default/myWeatherAppFunction-staging/get";
 
       // Construct the URL with the correct query parameters
       const url = `${lambdaEndpoint}?city=${city}`;
