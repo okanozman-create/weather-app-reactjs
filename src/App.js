@@ -21,7 +21,8 @@ const App = () => {
       setError("");
 
       const lambdaEndpoint =
-        " https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/new/myWeatherAppFunction-staging";
+        // "https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/new/myWeatherAppFunction-staging";
+        " https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/prod1/";
       const res = await fetch(
         `${lambdaEndpoint}/myWeatherAppFunction-staging?city=${city}`
       );
