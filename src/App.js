@@ -20,12 +20,25 @@ const App = () => {
       setIsLoading(true);
       setError("");
 
-      const lambdaEndpoint =
-        // "https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/new/myWeatherAppFunction-staging";
-        " https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/prod1/";
+      // const lambdaEndpoint =
+      //   // "https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/new/myWeatherAppFunction-staging";
+      //   " https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/prod1/";
+      // const res = await fetch(
+      //   `${lambdaEndpoint}/myWeatherAppFunction-staging?city=${city}`
+      // );
+
+
       const res = await fetch(
-        `${lambdaEndpoint}/myWeatherAppFunction-staging?city=${city}`
+        "https://kufhnbgos4.execute-api.eu-north-1.amazonaws.com/Prod2",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({city}),
+        }
       );
+
 
       const data = await res.json();
 
