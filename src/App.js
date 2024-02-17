@@ -1,7 +1,6 @@
 import { useState } from "react";
 import config from "./aws-exports";
 import { Amplify } from "aws-amplify";
-
 import ErrorMessage from "./components/error/ErrorMessage";
 import Loader from "./components/loader/Loader";
 import Search from "./components/search/Search";
@@ -22,18 +21,10 @@ const App = () => {
       setError("");
 
       const lambdaEndpoint =
-      "https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/default/myWeatherAppFunction-staging/get";
+        " https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/new/myWeatherAppFunction-staging";
       const res = await fetch(
         `${lambdaEndpoint}/myWeatherAppFunction-staging?city=${city}`
       );
-
-      // const lambdaEndpoint = "https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/default/myWeatherAppFunction-staging/get";
-
-      // Construct the URL with the correct query parameters
-      // const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-
-      // Make the fetch request to the Lambda function endpoint
-      // const res = await fetch(url);
 
       const data = await res.json();
 
