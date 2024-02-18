@@ -19,11 +19,9 @@ const App = () => {
     setIsLoading(true);
     setError("");
 
-    const lambdaEndpoint =
-      "https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/prod1/";
-    const url = `${lambdaEndpoint}/myWeatherAppFunction-staging?city=${encodeURIComponent(
-      city
-    )}`;
+    const lambdaEndpoint = "https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/prod1/";
+
+    const url = `${lambdaEndpoint}myWeatherAppFunction-staging?city=${encodeURIComponent(city)}`;
 
     try {
       const response = await fetch(url);
