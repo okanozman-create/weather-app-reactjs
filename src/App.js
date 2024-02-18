@@ -15,38 +15,50 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const fetchData = async () => {
-    if (!city.trim()) {
-      setError("Please enter a city name.");
-      return;
-    }
-
+  async function fetchData() {
     setIsLoading(true);
     setError("");
 
-    const lambdaEndpoint = 'https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/prod1/';
-    const url = `${lambdaEndpoint}?city=${encodeURIComponent(city)}`;
+    const lambdaEndpoint =
+      "https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/prod1/";
+    const url = `${lambdaEndpoint}/myWeatherAppFunction-staging?city=${encodeURIComponent(
+      city
+    )}`;
 
     try {
-      const response = await fetch(url, { method: "GET", headers: { "Content-Type": "application/json" } });
+      const response = await fetch(url);
       const data = await response.json();
 
       if (!response.ok) {
         throw new Error(data.message || "Something went wrong...");
       }
 
+      if (data.cod === "404") {
+        throw new Error("Please check the city name and try again.");
+      }
+
       setWeatherData(data);
+      setCity(""); 
     } catch (error) {
-      console.error("Fetch error:", error);
-      setError("An error occurred. Please try again.");
+      setError(error.message);
+    
     } finally {
       setIsLoading(false);
     }
-  };
+  }
+
+  function handleSearchClick() {
+    fetchData();
+  }
+
   return (
     <div className="App">
       <div className="container">
-        <Search city={city} setCity={setCity} onSearchClick={() => fetchData()} />
+        <Search
+          city={city}
+          setCity={setCity}
+          onSearchClick={handleSearchClick}
+        />
         {isLoading && <Loader />}
         {!isLoading && !error && (
           <>
