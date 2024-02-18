@@ -21,10 +21,10 @@ const App = () => {
 
 
 
-     const lambdaEndpoint = "https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/prod1";
-     const functionName = "myWeatherF"; 
+     const lambdaEndpoint = "https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/prod1/";
+    
 
-     const url = `${lambdaEndpoint}/${functionName}?city=${encodeURIComponent(city)}`;
+     const url = `${lambdaEndpoint}`;
 
     // const lambdaEndpoint = "https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/prod1";
     // const url = `${lambdaEndpoint}`;
