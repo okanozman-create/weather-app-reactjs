@@ -15,94 +15,41 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  async function fetchData() {
-    try {
-      setIsLoading(true);
-      setError("");
-
-      // const lambdaEndpoint =
-      //   // "https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/new/myWeatherAppFunction-staging";
-      //   " https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/prod1/";
-      // const res = await fetch(
-      //   `${lambdaEndpoint}/myWeatherAppFunction-staging?city=${city}`
-      // );
-      // const apiKey = process.env.OPENWEATHER_API_KEY; 
-      // const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-
-      // const res = await fetch(
-      //   "https://kufhnbgos4.execute-api.eu-north-1.amazonaws.com/Prod2",
-      //   {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify({city}),
-      //   }
-      // );
-
-      // const res = await fetch(url, {
-      //   method: "GET",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      // });
-
-
-      const lambdaEndpoint = 'https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/prod1/'; // Replace with your actual Lambda endpoint
-      const url = `${lambdaEndpoint}?city=${city}`;
-
-      const res = await fetch(url, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      const data = await res.json();
-
-      if (data.cod === "404") {
-        throw new Error("Please check the city name and try again.");
-      }
-
-      if (!res.ok) {
-        throw new Error(data.message || "Something went wrong...");
-      }
-
-      setError("");
-      setWeatherData(data);
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setIsLoading(false);
-    }
-  }
-
-  function handleSearchClick() {
+  const fetchData = async () => {
     if (!city.trim()) {
       setError("Please enter a city name.");
       return;
     }
-    fetchData();
-    setCity("");
-  }
+
+    setIsLoading(true);
+    setError("");
+
+    const lambdaEndpoint = 'https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/prod1/';
+    const url = `${lambdaEndpoint}?city=${encodeURIComponent(city)}`;
+
+    try {
+      const response = await fetch(url, { method: "GET", headers: { "Content-Type": "application/json" } });
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Something went wrong...");
+      }
+
+      setWeatherData(data);
+    } catch (error) {
+      console.error("Fetch error:", error);
+      setError("An error occurred. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="App">
       <div className="container">
-        <Search
-          city={city}
-          setCity={setCity}
-          onSearchClick={handleSearchClick}
-          fetchData={fetchData}
-        />
+        <Search city={city} setCity={setCity} onSearchClick={() => fetchData()} />
         {isLoading && <Loader />}
-
-        {!isLoading && !error && (
-          <>
-            <Main weatherData={weatherData} />
-            <Footer weatherData={weatherData} />
-          </>
-        )}
+        {!isLoading && !error && <><Main weatherData={weatherData} /><Footer weatherData={weatherData} /></>}
         {error && <ErrorMessage message={error} />}
       </div>
     </div>
