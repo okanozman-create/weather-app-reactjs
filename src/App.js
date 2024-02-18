@@ -43,13 +43,17 @@ const App = () => {
       setIsLoading(false);
     }
   };
-
   return (
     <div className="App">
       <div className="container">
         <Search city={city} setCity={setCity} onSearchClick={() => fetchData()} />
         {isLoading && <Loader />}
-        {!isLoading && !error && <><Main weatherData={weatherData} /><Footer weatherData={weatherData} /></>}
+        {!isLoading && !error && (
+          <>
+            <Main weatherData={weatherData} />
+            <Footer weatherData={weatherData} />
+          </>
+        )}
         {error && <ErrorMessage message={error} />}
       </div>
     </div>
