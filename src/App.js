@@ -41,41 +41,86 @@ const App = () => {
   //   }
   // }
 
+
+ // const url = `${lambdaEndpoint}?city=${encodeURIComponent(city)}`;
+    //   const lambdaEndpoint =
+    //   "https://nb5ol5oy4g.execute-api.eu-west-1.amazonaws.com/default";
+    // const res = await fetch(
+    //   `${lambdaEndpoint}/myWeatherAppFunction-staging?city=${city}`
+    // );
+
+    // const data = await res.json();
+
+    // const res = await fetch(
+    //   `${lambdaEndpoint}/myWeatherAppFunction-staging?city=${city}`
+    // );
+
+
+  // async function fetchData() {
+  //   if (!city) {
+  //     setError("Please enter a city name.");
+  //     setIsLoading(false);
+  //     return;
+  //   }
+
+  //   setIsLoading(true);
+  //   setError("");
+   
+
+  //   const lambdaEndpoint =
+  //     "https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/prod1";
+  //   const url = `${lambdaEndpoint}/myWeatherF?city=${city}`;
+
+  //   try {
+  //     const res = await fetch(url);
+  //     const data = await res.json();
+
+  //     if (!res.ok) {
+  //       throw new Error(data.message || "Something went wrong...");
+  //     }
+
+  //     if (data.cod === "404") {
+  //       throw new Error("Please check the city name and try again.");
+  //     }
+
+  //     setWeatherData(data);
+  //     setCity(""); // Başarılı API çağrısından sonra şehir durumunu sıfırla
+  //   } catch (error) {
+  //     setError(error.message);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // }
+
   async function fetchData() {
-    if (!city) {
-      setError("Please enter a city name.");
-      setIsLoading(false);
-      return;
-    }
-  
-    setIsLoading(true);
-    setError("");
-  
-    const lambdaEndpoint = "https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/prod1/";
-    const url = `${lambdaEndpoint}?city=${encodeURIComponent(city)}`;
-  
     try {
-      const response = await fetch(url);
-      const data = await response.json();
-  
-      if (!response.ok) {
-        throw new Error(data.message || "Something went wrong...");
-      }
-  
+      setIsLoading(true);
+
+      const lambdaEndpoint =
+        "https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/prod1";
+
+      const url = `${lambdaEndpoint}/myWeatherF?city=${city}`;
+
+      const res = await fetch(url);
+
+      const data = await res.json();
+
       if (data.cod === "404") {
         throw new Error("Please check the city name and try again.");
       }
-  
+
+      if (!res.ok) {
+        throw new Error(data.message || "Something went wrong...");
+      }
+
+      setError("");
       setWeatherData(data);
-      setCity(""); // Başarılı API çağrısından sonra şehir durumunu sıfırla
     } catch (error) {
       setError(error.message);
     } finally {
       setIsLoading(false);
     }
   }
-
-  
 
   function handleSearchClick() {
     fetchData();
@@ -221,23 +266,3 @@ function Footer({ weatherData }) {
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
