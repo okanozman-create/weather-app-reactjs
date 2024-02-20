@@ -13,13 +13,50 @@ const App = () => {
   const [error, setError] = useState("");
 
   
+  // async function fetchData() {
+  //   try {
+  //     setIsLoading(true);
+  //     const lambdaEndpoint = "https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/prod1";
+  //     const url = `${lambdaEndpoint}/myWeatherF?city=${city}`;
+  
+  //     const res = await fetch(url);
+  
+  //     if (!res.ok) {
+  //       throw new Error("Something went wrong...");
+  //     }
+  
+  //     const data = await res.json();
+  
+  //     if (data.cod === "404") {
+  //       throw new Error("Please check the city name and try again.");
+  //     }
+  
+  //     setError("");
+  //     setWeatherData(data);
+  //   } catch (error) {
+  //     setError(error.message);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // }
+  
   async function fetchData() {
     try {
       setIsLoading(true);
-      const lambdaEndpoint = "https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/prod1";
-      const url = `${lambdaEndpoint}/myWeatherF?city=${city}`;
+      // Example POST request endpoint
+      const endpoint = "https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/prod1";
   
-      const res = await fetch(url);
+      const postData = {
+        city: city // Your existing city state
+      };
+  
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(postData),
+      });
   
       if (!res.ok) {
         throw new Error("Something went wrong...");
@@ -27,12 +64,13 @@ const App = () => {
   
       const data = await res.json();
   
+      // Assuming the API returns a similar 'cod' property on error
       if (data.cod === "404") {
         throw new Error("Please check the city name and try again.");
       }
   
       setError("");
-      setWeatherData(data);
+      setWeatherData(data); // Adjust according to how you want to handle the response
     } catch (error) {
       setError(error.message);
     } finally {
