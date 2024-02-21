@@ -38,12 +38,12 @@ body {
   flex: 1;
   border: none;
   outline: none;
-  background-color: transparent; 
+  background-color: transparent;
   padding: 10px;
 }
 .input-field::placeholder {
-  color: #0d2949; 
-  font-size: 2rem; 
+  color: #0d2949;
+  font-size: 2rem;
 }
 
 .search-logo {
@@ -166,9 +166,8 @@ input::placeholder {
 }
 
 .imageContainer {
-  display: block; /* Ensure the image is a block element */
-  margin: 0 auto; /* Center the image horizontally */
-  max-width: 100%; /* Ensure the image doesn't exceed the container's width */
-  height: auto; /* Allow the height to adjust proportionally */
-width: 30rem;
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
 }

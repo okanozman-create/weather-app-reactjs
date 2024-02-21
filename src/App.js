@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
-import IMAGES from "./images";
-import toDateFunction from "./toDateFunction";
-import config from "./aws-exports";
-import { Amplify } from "aws-amplify";
-
-Amplify.configure(config);
+import { useState } from "react";
+import Search from "./components/search/Search";
+import Main from "./components/main/Main";
+import Loader from "./components/loader/Loader";
+import Footer from "./components/footer/Footer";
+import ErrorMessage from "./components/error/ErrorMessage";
 
 const App = () => {
   const [city, setCity] = useState("");
@@ -12,76 +11,37 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  
-  // async function fetchData() {
-  //   try {
-  //     setIsLoading(true);
-  //     const lambdaEndpoint = "https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/prod1";
-  //     const url = `${lambdaEndpoint}/myWeatherF?city=${city}`;
-  
-  //     const res = await fetch(url);
-  
-  //     if (!res.ok) {
-  //       throw new Error("Something went wrong...");
-  //     }
-  
-  //     const data = await res.json();
-  
-  //     if (data.cod === "404") {
-  //       throw new Error("Please check the city name and try again.");
-  //     }
-  
-  //     setError("");
-  //     setWeatherData(data);
-  //   } catch (error) {
-  //     setError(error.message);
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // }
-  
   async function fetchData() {
+    setIsLoading(true);
+    setError("");
+    const endpoint =
+      "https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/prod1";
+    const postData = { city: city };
+
     try {
-      setIsLoading(true);
-      // Example POST request endpoint
-      const endpoint = "https://vzgnt19q7c.execute-api.eu-west-1.amazonaws.com/prod1";
-  
-      const postData = {
-        city: city // Your existing city state
-      };
-  
       const res = await fetch(endpoint, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(postData),
       });
-  
-      if (!res.ok) {
-        throw new Error("Something went wrong...");
-      }
-  
+
+      if (!res.ok) throw new Error("Something went wrong...");
+
       const data = await res.json();
-  
-      // Assuming the API returns a similar 'cod' property on error
-      if (data.cod === "404") {
+      if (data.cod === "404")
         throw new Error("Please check the city name and try again.");
-      }
-  
-      setError("");
-      setWeatherData(data); // Adjust according to how you want to handle the response
+
+      setWeatherData(data);
     } catch (error) {
       setError(error.message);
+      setWeatherData({});
     } finally {
       setIsLoading(false);
     }
   }
-  
 
   function handleSearchClick() {
     fetchData();
-    setCity("");
   }
 
   return (
@@ -91,135 +51,18 @@ const App = () => {
           city={city}
           setCity={setCity}
           onSearchClick={handleSearchClick}
-          fetchData={fetchData}
         />
         {isLoading && <Loader />}
-
-        {!isLoading && !error && (
+        {error && <ErrorMessage message={error} />}
+        {!isLoading && !error && weatherData && weatherData.weather && (
           <>
             <Main weatherData={weatherData} />
             <Footer weatherData={weatherData} />
           </>
         )}
-        {error && <ErrorMessage message={error} />}
       </div>
     </div>
   );
 };
 
 export default App;
-
-function ErrorMessage({ message }) {
-  return <p className="error">{message}</p>;
-}
-
-function Loader() {
-  return <p className="loader">Loading...</p>;
-}
-
-function Search({ city, setCity, onSearchClick, fetchData }) {
-  useEffect(() => {
-    const handleKeyPress = async function (e) {
-      if (e.key === "Enter") {
-        await fetchData();
-        setCity("");
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyPress);
-
-    return () => {
-      document.removeEventListener("keydown", handleKeyPress);
-    };
-  }, [fetchData, setCity]);
-
-  return (
-    <div className="search-box">
-      <input
-        type="text"
-        className="input-field"
-        placeholder="Enter City..."
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
-      />
-      <img
-        className="search-logo"
-        src={IMAGES.search}
-        alt="search-logo"
-        onClick={onSearchClick}
-      />
-    </div>
-  );
-}
-
-function Main({ weatherData }) {
-  const hasWeatherData =
-    weatherData && weatherData.weather && weatherData.weather.length > 0;
-
-  const temp = hasWeatherData ? Math.round(weatherData.main.temp) : null;
-  const condition = hasWeatherData ? weatherData.weather[0].main : null;
-
-  function checkWeather(condition) {
-    if (!condition) {
-      return "Please check the city name and try again.";
-    }
-
-    switch (condition) {
-      case "Rain":
-        return IMAGES.rain;
-      case "Snow":
-        return IMAGES.snow;
-      case "Clouds":
-        return IMAGES.cloud;
-      case "Clear":
-        return IMAGES.clear;
-      case "Mist":
-      case "Haze":
-        return IMAGES.haze;
-      default:
-        return "";
-    }
-  }
-
-  return (
-    <div className="weather-details">
-      {hasWeatherData && (
-        <>
-          <h1>{weatherData.name}</h1>
-          <h3>{toDateFunction()}</h3>
-          <div className="new-flex">
-            <div className="main-img">
-              <img src={checkWeather(condition)} alt="conditional-weather" />
-            </div>
-            <div className="new-flex-2">
-              <p>{temp} °C</p>
-              <p style={{ color: "#0d2949" }}>{condition}</p>
-            </div>
-          </div>
-        </>
-      )}
-    </div>
-  );
-}
-
-function Footer({ weatherData }) {
-  const hasWeatherData = weatherData && weatherData.main && weatherData.wind;
-
-  return (
-    <div className="footer">
-      {hasWeatherData && (
-        <>
-          <div className="humidity">
-            <img src={IMAGES.humidity} alt="humidity-logo" />
-            <p>Humidity: {weatherData.main.humidity} %</p>
-          </div>
-
-          <div className="wind">
-            <img src={IMAGES.wind} alt="wind-logo" />
-            <p>Wind: {weatherData.wind.speed} km/s</p>
-          </div>
-        </>
-      )}
-    </div>
-  );
-}
