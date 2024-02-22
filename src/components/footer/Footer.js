@@ -9,12 +9,15 @@ export default function Footer({ weatherData }) {
         <>
           <div className="humidity">
             <img src={IMAGES.humidity} alt="humidity-logo" />
-            <p>Humidity: {weatherData.main.humidity} %</p>
+            <p className="p-humidity"> Humidity</p>
+            <progress value={weatherData.main.humidity} max="100"></progress>
+            <p>{weatherData.main.humidity} %</p>
           </div>
 
           <div className="wind">
             <img src={IMAGES.wind} alt="wind-logo" />
-            <p>Wind: {weatherData.wind.speed} km/s</p>
+            <p className="p-wind">Wind</p>
+            <p className="p-wind2">{weatherData.wind.speed} km/s</p>
           </div>
         </>
       )}

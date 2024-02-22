@@ -40,9 +40,10 @@ export default function Main({ weatherData }) {
             <div className="main-img">
               <img src={checkWeather(condition)} alt="conditional-weather" />
             </div>
+
             <div className="new-flex-2">
               <p>{temp} °C</p>
-              <p style={{ color: "#0d2949" }}>{condition}</p>
+              <span>{condition}</span>
             </div>
           </div>
         </>

@@ -1,3 +1,5 @@
+/* ----------GENERAL-------------------  */
+
 * {
   margin: 0;
   padding: 0;
@@ -14,6 +16,23 @@ body {
   line-height: 1;
   color: #0d2949;
 }
+
+/* ------Header------ */
+
+h1 {
+  font-weight: 700;
+  font-size: 6rem;
+  letter-spacing: 4px;
+}
+
+h3 {
+  font-family: "Agbalumo";
+  font-weight: 500;
+  color: #ffffff;
+  font-size: 4rem;
+}
+
+/* -----Body------- */
 
 .container {
   background-color: #5b9dde;
@@ -41,8 +60,12 @@ body {
   background-color: transparent;
   padding: 10px;
 }
-.input-field::placeholder {
+
+input::placeholder {
+  font-weight: bold;
+  opacity: 0.5;
   color: #0d2949;
+  font-family: "Griffy";
   font-size: 2rem;
 }
 
@@ -55,42 +78,59 @@ body {
 .search-logo:hover {
   background-color: #ff9523;
 }
+
+/* -----Body-Weather-Condition--------- */
 .weather-details {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2.4rem;
-}
-
-h1 {
-  font-weight: 700;
-  font-size: 3.5rem;
-  letter-spacing: 4px;
-}
-
-h3 {
-  font-family: "Agbalumo";
-  font-weight: 500;
-  color: #ffffff;
-  font-size: 2.4rem;
+  margin-bottom: 12rem;
 }
 
 .weather-details span {
+  font-weight: 500;
+  font-size: 2.2rem;
+}
+.weather-details p {
   font-weight: 700;
-  font-size: 5.2rem;
+  font-size: 3rem;
 }
 
-.footer {
+p {
+  font-weight: 400;
+  font-size: 2.4rem;
+}
+
+.new-flex {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-top: 3.2rem;
+  flex-direction: column;
+}
+
+.main-img img {
+  max-width: 100%;
+  height: auto;
+  width: 20rem;
+  max-height: 20rem;
+}
+
+.new-flex-2 {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
 }
 
 .humidity {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
+}
+
+.p-humidity {
+  font-weight: 700;
+  font-size: 2.6rem;
 }
 
 .wind {
@@ -99,38 +139,25 @@ h3 {
   gap: 10px;
 }
 
-p {
-  font-weight: 400;
-  font-size: 2.4rem;
+.p-wind {
+  font-weight: 700;
+  font-size: 2.6rem;
 }
 
-.main-img img {
-  max-width: 100%;
-  height: auto;
-  width: 10rem;
-  max-height: 10rem;
+.p-wind2 {
+  margin-left: 1rem;
 }
 
-input::placeholder {
-  font-weight: bold;
-  opacity: 0.5;
-  color: #000307;
-  font-family: "Griffy";
-}
+/* ----Footer----------- */
 
-.new-flex {
+.footer {
   display: flex;
   align-items: center;
-  gap: 3.2rem;
+  justify-content: space-between;
+  margin-top: 3.2rem;
 }
 
-.new-flex-2 {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
+/* ------Loader------- */
 
 .loader {
   font-weight: 700;
@@ -140,28 +167,157 @@ input::placeholder {
   text-align: center;
 }
 
+/* -------Error------ */
+
+.errorMessageContainer {
+  margin: 8rem auto;
+  padding: 3.2rem 3.2rem;
+}
+
 .error {
   text-align: center;
-  color: #ffffff;
+  color: black;
+  font-size: 2.8rem;
 }
 
-@media (min-width: 65em) {
-  .container {
-    max-width: 40%;
+/* ---------------RESPONSİVE DESİGN_________________________ */
+
+@media (max-width: 40em) {
+  .new-flex {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
   }
-}
 
-@media (max-width: 30em) {
+  h1 {
+    font-weight: 700;
+    font-size: 2.5rem;
+    letter-spacing: 4px;
+  }
+
+  h3 {
+    font-family: "Agbalumo";
+    font-weight: 500;
+    color: #ffffff;
+    font-size: 2.4rem;
+  }
+
   .search-logo {
     padding: 1rem 2rem;
   }
 
+  .p-wind2 {
+    margin-left: 2rem;
+  }
+
+  .humidity {
+    flex-wrap: wrap;
+    gap: 3px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .wind {
+    flex-wrap: wrap;
+  }
+  .error {
+    font-size: 2rem;
+  }
+
+  .weather-details {
+    margin-bottom: 1px;
+  }
+
+  .container {
+    margin: 2rem auto;
+    padding: 1.6rem 1.6rem;
+    border-radius: 2rem;
+  }
   .humidity p {
     font-size: 1.6rem;
     margin-right: 3rem;
   }
   .wind p {
     font-size: 1.6rem;
+  }
+
+  .footer {
+    gap: 4.5rem;
+  }
+
+  .main-img img {
+    max-width: 100%;
+    height: auto;
+    width: 10rem;
+    max-height: 10rem;
+  }
+}
+
+/* ----------------------- */
+
+@media (min-width: 48em) and (max-width: 64em) {
+  .humidity {
+    flex-wrap: wrap;
+    gap: 3px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  h1 {
+    font-weight: 700;
+    font-size: 2.5rem;
+    letter-spacing: 4px;
+  }
+
+  h3 {
+    font-family: "Agbalumo";
+    font-weight: 500;
+    color: #ffffff;
+    font-size: 2.4rem;
+  }
+}
+
+/*---------------------------- */
+@media (min-width: 64.1em) {
+  .footer {
+    gap: 6rem;
+  }
+
+  h1 {
+    font-weight: 700;
+    font-size: 4rem;
+    letter-spacing: 4px;
+  }
+
+  h3 {
+    font-family: "Agbalumo";
+    font-weight: 500;
+    color: #ffffff;
+    font-size: 2.7rem;
+  }
+
+  .container {
+    max-width: 40%;
+  }
+
+  .humidity {
+    flex-wrap: wrap;
+  }
+  .wind {
+    flex-wrap: wrap;
+  }
+
+  .main-img img {
+    max-width: 100%;
+    height: auto;
+    width: 15rem;
+    max-height: 15rem;
+  }
+
+  .new-flex {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
   }
 }
 

@@ -25,7 +25,7 @@ const App = () => {
         body: JSON.stringify(postData),
       });
 
-      if (!res.ok) throw new Error("Something went wrong...");
+      if (!res.ok) throw new Error("Please enter a valid city name. ⛷️⛷️⛷️");
 
       const data = await res.json();
       if (data.cod === "404")
@@ -34,6 +34,7 @@ const App = () => {
       setWeatherData(data);
     } catch (error) {
       setError(error.message);
+
       setWeatherData({});
     } finally {
       setIsLoading(false);
@@ -53,7 +54,13 @@ const App = () => {
           onSearchClick={handleSearchClick}
         />
         {isLoading && <Loader />}
-        {error && <ErrorMessage message={error} />}
+
+        {error && (
+          <div className="errorMessageContainer">
+            <ErrorMessage message={error} />
+          </div>
+        )}
+
         {!isLoading && !error && weatherData && weatherData.weather && (
           <>
             <Main weatherData={weatherData} />
