@@ -17,7 +17,7 @@ export default function ErrorMessage({ message }) {
               style={{
                 fontWeight: "bold",
                 fontStyle: "italic",
-                color: "yellow",
+              
               }}
             >
               {part}

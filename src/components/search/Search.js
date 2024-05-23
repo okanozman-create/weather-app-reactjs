@@ -21,7 +21,7 @@ export default function Search({ city, setCity, onSearchClick }) {
       <input
         type="text"
         className="input-field"
-        placeholder="Enter City..."
+        placeholder="Enter a city name to get the current weather information..."
         value={city}
         onChange={(e) => setCity(e.target.value)}
       />

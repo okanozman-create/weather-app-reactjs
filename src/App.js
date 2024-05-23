@@ -25,7 +25,7 @@ const App = () => {
         body: JSON.stringify(postData),
       });
 
-      if (!res.ok) throw new Error("Please enter a valid city name. ⛷️⛷️⛷️");
+      if (!res.ok) throw new Error("Please enter a valid city name.");
 
       const data = await res.json();
       if (data.cod === "404")
@@ -34,6 +34,7 @@ const App = () => {
       setWeatherData(data);
     } catch (error) {
       setError(error.message);
+      setCity("");
 
       setWeatherData({});
     } finally {
@@ -47,6 +48,9 @@ const App = () => {
 
   return (
     <div className="App">
+      <header>
+        <h1>React Weather App</h1>
+      </header>
       <div className="container">
         <Search
           city={city}
