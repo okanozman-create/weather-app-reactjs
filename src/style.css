@@ -232,20 +232,7 @@ p {
     font-size: 8px;
   }
 
-  .p-wind2 {
-    margin-left: 2rem;
-  }
 
-  .humidity {
-    flex-wrap: wrap;
-    gap: 3px;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .wind {
-    flex-wrap: wrap;
-  }
   .error {
     font-size: 2rem;
   }
@@ -260,11 +247,11 @@ p {
     border-radius: 2rem;
   }
   .humidity p {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     margin-right: 3rem;
   }
   .wind p {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
 
   .wind img {
@@ -273,15 +260,28 @@ p {
 
   .p-humidity {
     font-weight: 700;
-    margin-top: 9px;
-  }
+   }
+
+
 
   .footer {
-    gap: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 5rem;
+    gap: 3rem;
+  }
+
+
+  .humidity {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 5rem;
+  }
+  .wind {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .main-img img {
