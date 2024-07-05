@@ -22,7 +22,7 @@ header h1 {
   font-weight: 700;
   font-size: 3rem;
   text-align: center;
-  margin-top: 1rem;
+  margin-top: 1.2rem;
 }
 
 h1 {
@@ -232,7 +232,6 @@ p {
     font-size: 8px;
   }
 
-
   .error {
     font-size: 2rem;
   }
@@ -260,9 +259,7 @@ p {
 
   .p-humidity {
     font-weight: 700;
-   }
-
-
+  }
 
   .footer {
     display: flex;
@@ -271,7 +268,6 @@ p {
     margin-top: 5rem;
     gap: 3rem;
   }
-
 
   .humidity {
     display: flex;
