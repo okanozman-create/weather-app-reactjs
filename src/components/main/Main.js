@@ -5,7 +5,10 @@ export default function Main({ weatherData }) {
   const hasWeatherData =
     weatherData && weatherData.weather && weatherData.weather.length > 0;
 
-  const temp = hasWeatherData ? Math.round(weatherData.main.temp) : null;
+  // Convert Kelvin to Celsius
+  const tempInCelsius = hasWeatherData
+    ? Math.round(weatherData.main.temp - 273.15)
+    : null;
   const condition = hasWeatherData ? weatherData.weather[0].main : null;
 
   function checkWeather(condition) {
@@ -42,7 +45,7 @@ export default function Main({ weatherData }) {
             </div>
 
             <div className="new-flex-2">
-              <p>{temp} °C</p>
+              <p>{tempInCelsius} °C</p>
               <span>{condition}</span>
             </div>
           </div>

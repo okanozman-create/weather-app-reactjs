@@ -105,7 +105,7 @@ const App = () => {
       const data = await res.json();
       if (data.cod === "404")
         throw new Error("Please check the city name and try again.");
-
+console.log(data)
       setWeatherData(data);
     } catch (error) {
       setError(error.message);
